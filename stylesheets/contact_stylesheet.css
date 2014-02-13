@@ -1,0 +1,43 @@
+body {
+	background-color: rgb(242,242,242);
+}
+
+#contacttitletext {
+	text-align: center;
+	font-size: 4em;
+	font-family: "Myriad Pro", Open Sans, Helvetica, Verdana;
+	padding-top: 0.5em;
+	padding-bottom: 0.3em;
+}
+
+#contactgrid {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.contactrow {
+	display: inline-table;
+	margin-bottom: 3em;
+}
+
+.img1 {
+	float: left;
+}
+
+.img2 {
+	float: center;
+	margin-left: 3em;
+	margin-right: 3em;
+}
+
+.img3 {
+	float: right;
+}
+
+.socialicon {
+	width: 9em;
+}
+
+#footer {
+	position: fixed;
+}

@@ -1,0 +1,39 @@
+doctype HTML
+//@author Rukmal Weerawarana
+//@email rukmal.weerawarana@gmail.com
+html
+	head
+		script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+		script(src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js")
+		script(src="../js_files/home_script.js")
+		script(src="../js_files/global_script.js")
+		link(rel="shortcut icon" href="../images/page_icon.ico")
+		link(href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css')
+		link(type="text/css" rel="stylesheet" href="../stylesheets/home_stylesheet.css")
+		link(type="text/css" rel="stylesheet" href="../stylesheets/globalstyle.css")
+		title Rukmal Weerawarana's World
+	body
+		div#menu
+			a(href="home.html").link
+				div.menuoption Rukmal
+			a(href="about.html").link
+				div.menuoption About Me
+			a(href="files/LINK TO NEW FILE").link
+				div.menuoption Projects
+			a(href="../files/Rukmal_Weerawarana_Resume.pdf").link
+				div.menuoption Resume
+			a(href="contact.html").link
+				div.menuoption Contact
+		div#menufiller
+		div#introbox
+			div#introduction
+				div#introtext
+					p#introcommand
+						|sh-3.2# echo $name
+						span#cursor _
+					b#introname Rukmal Weerawarana
+				div#intropicture
+					img#intropicture(src="../images/rukmal_splash_bw.png")
+		div#navboxes
+		div#footer.
+			Designed and developed by Rukmal Weerawarana.

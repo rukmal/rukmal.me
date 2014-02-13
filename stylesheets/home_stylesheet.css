@@ -1,0 +1,36 @@
+#introbox {
+	text-align: center;
+	background-color: rgb(242,242,242);
+	position: relative;
+}
+
+#introduction {
+	display: inline-block;
+	padding-bottom: 5em;
+}
+
+#intropicture {
+	height: 33em;
+	float: right;
+	padding-left: 1em;
+	margin-top: 0.2em;
+}
+
+#introtext {
+	font-family: Courier;
+	font-size: 1.6em;
+	float: left;
+	text-align: left;
+	padding-right: 1em;
+	padding-top: 7em;
+}
+
+#introname {
+	font-family: Open Sans, Helvetica, Verdana;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+#footer {
+	position: fixed;
+}

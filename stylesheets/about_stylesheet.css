@@ -1,0 +1,71 @@
+body {
+	background-color: rgb(242,242,242);
+}
+
+.link {
+	color: rgb(112,112,112);
+}
+
+#aboutme {
+	margin: 0 auto;
+	text-align: center;
+}
+
+.aboutbox {
+	display: inline-table;
+	background-color: rgb(255,255,255);
+	margin-top: 3em;
+	border-radius: 1.2em;
+	box-shadow: 0.1em 0.1em 0.5em rgb(112,112,112);
+}
+
+.aboutbox span {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 1.3em;
+	font-family: Open Sans, Verdana, Helvetica;
+	width: 30em;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+
+.aboutbox img {
+	width: 17em;
+}
+
+.leftbox span {
+	float: left;
+}
+
+.leftbox img {
+	float: right;
+	border-top-right-radius: 1.2em;
+	border-bottom-right-radius: 1.2em;
+}
+
+.rightbox span {
+	float: right;
+}
+
+.rightbox img {
+	float: left;
+	border-top-left-radius: 1.2em;
+	border-bottom-left-radius: 1.2em;
+}
+
+#uw span {
+	margin-top: 3em;
+}
+
+#bsc span {
+	margin-top: 3.3em;
+}
+
+#ib span {
+	margin-top: 2.5em;
+}
+
+#footer {
+	poition: static;
+}
