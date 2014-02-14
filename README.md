@@ -18,3 +18,5 @@ On the server side, if I do ever have to include additional Pi's in the infrastr
 Any comments are welcome!
 
 Find me at http://rukmal.me
+
+> The author would greatly appreciate it if the design of the site was **not copied**.
