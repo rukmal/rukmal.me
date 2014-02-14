@@ -1,6 +1,6 @@
 # Rukmal Weerawarana's World
 
-This website is my attempt to not only centralize my amazingly abundant sloth of social websites, but also it is also an 'exploration' project of sorts for me. This is my first exposure to using Node.js, let alone maintaining and running my own server!
+This website is my attempt to have a centralized social 'hub' on the internet. It is also also an 'exploration' project of sorts for me. This is my first exposure to using Node.js, let alone maintaining and running my own server!
 
 ## Current Implementation
 Currently, the site does not do very much in terms of having a working backend, as no site-related server side processing has to be done yet. Because of this, the only JavaScript currently in use is limited to the jQuery objects being used to control the animations on the site.
