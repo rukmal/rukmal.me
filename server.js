@@ -1,8 +1,17 @@
+/*
+ * @author Rukmal Weerawarana
+ * @email rukmal.weerawarana@gmail.com
+ *
+ * This script starts and manages bad requests for the Node.js server used
+ * to host the site on a Raspberry Pi.
+ */
+
 'use strict'
 
 var path = require('path');
 var express = require('express');
 var app = express();
+var port = 3000;
 
 //Log all requests
 app.use(express.logger('dev'));
@@ -16,5 +25,5 @@ app.get('*', function(req, res) {
 });
 
 //Starting the server up
-app.listen(3000);
-console.log('listening on port 3000');
+app.listen(port);
+console.log('listening on port ' + port);
