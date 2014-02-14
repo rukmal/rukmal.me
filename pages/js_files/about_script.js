@@ -8,14 +8,14 @@
 
  $(document).ready(function() {
  	$('.aboutbox').mouseenter(function() {
- 		$(this).animate({'zoom':'1.03'}, 175);
+ 		$(this).animate({'zoom':'1.03'}, 150);
  	})
 
  	$('.aboutbox').mouseleave(function() {
- 		$(this).animate({'zoom':'1'}, 175);
+ 		$(this).animate({'zoom':'1'}, 150);
  	})
 
  	$('#uw, #bsc, #ib, #footer').hide().each(function(i) {
- 		$(this).delay(300 * i).fadeIn(500, 'swing');
+ 		$(this).delay(225 * i).fadeIn(500, 'swing');
  	})
  })
