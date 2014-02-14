@@ -1,4 +1,4 @@
-# rukmal.me Source Code
+# http://rukmal.me Source Code
 
 This website is my attempt to have a centralized social 'hub' on the internet. It is also also an 'exploration' project of sorts for me. This is my first exposure to using Node.js, let alone maintaining and running my own server!
 
