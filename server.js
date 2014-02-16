@@ -11,7 +11,7 @@
 var path = require('path');
 var express = require('express');
 var app = express();
-var port = 80;
+var port = 1000;
 
 //Log all requests
 app.use(express.logger('dev'));
