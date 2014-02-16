@@ -8,11 +8,11 @@
 
  $(document).ready(function() {
  	$('.aboutbox').mouseenter(function() {
- 		$(this).animate({'zoom':'1.03'}, 150);
+ 		$(this).animate({'zoom':'1.02'}, 120);
  	})
 
  	$('.aboutbox').mouseleave(function() {
- 		$(this).animate({'zoom':'1'}, 150);
+ 		$(this).animate({'zoom':'1'}, 120);
  	})
 
  	$('#uw, #bsc, #ib, #footer').hide().each(function(i) {
