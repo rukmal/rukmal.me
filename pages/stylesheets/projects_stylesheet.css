@@ -1,0 +1,32 @@
+body {
+	background-color: rgb(242,242,242);
+}
+
+#layoutparent {
+	text-align: center;
+}
+
+#layoutbuttons {
+	display: inline-table;
+	padding-top: 5em;
+}
+
+.layoutbutton {
+	display: table-cell;
+	background-color: rgb(220,220,220);
+	color: rgb(104,104,104);
+	font-family: Verdana;
+	font-size: 0.9em;
+}
+
+#listv {
+	padding: 1.2em;
+	border-top-left-radius: 1em;
+	border-bottom-left-radius: 1em;
+}
+
+#blockv {
+	padding: 1.2em;
+	border-top-right-radius: 1em;
+	border-bottom-right-radius: 1em;
+}

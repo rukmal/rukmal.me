@@ -3,15 +3,15 @@ doctype HTML
 //@email rukmal.weerawarana@gmail.com
 html
 	head
-		link(rel="shortcut icon" href="images/page_icon.ico")
+		link(rel="shortcut icon" href="../images/page_icon.ico")
 		link(href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css')
-		link(type="text/css" rel="stylesheet" href="stylesheets/home_stylesheet.css")
+		link(type="text/css" rel="stylesheet" href="stylesheets/projects_stylesheet.css")
 		link(type="text/css" rel="stylesheet" href="stylesheets/globalstyle.css")
+		title Rukmal Weerawarana's World
 		script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
 		script(src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js")
-		script(src="js_files/home_script.js")
+		script(src="js_files/projects_script.js")
 		script(src="js_files/global_script.js")
-		title Rukmal Weerawarana's World
 	body
 		div#menu
 			a(href="home.html").link
@@ -25,15 +25,8 @@ html
 			a(href="contact.html").link
 				div.menuoption Contact
 		div#menufiller
-		div#introbox
-			div#introduction
-				div#introtext
-					p#introcommand
-						|sh-3.2# echo $NAME
-						span#cursor _
-					b#introname Rukmal Weerawarana
-				div#intropicture
-					img#intropicture(src="images/rukmal_splash_bw.png")
-		div#navboxes
-		div#footer.
-			Designed and developed by Rukmal Weerawarana.
+		p#titletext Welcome to the shop.
+		div#layoutparent
+			div#layoutbuttons
+				div.layoutbutton#listv List View
+				div.layoutbutton#blockv Block View

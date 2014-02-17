@@ -10,11 +10,11 @@
 $(document).ready(function() {
 	// Menu selection animations
 	$('.menuoption').mouseenter(function() {
-		$(this).animate({'background-color':'rgb(80,80,80)'}, 200);
+		$(this).animate({'background-color':'rgb(80,80,80)'}, 150);
 	})
 
 	$('.menuoption').mouseleave(function() {
-		$(this).animate({'background-color':'rgb(0,0,0)'}, 200);
+		$(this).animate({'background-color':'rgb(0,0,0)'}, 100);
 	})
 
 	//********
