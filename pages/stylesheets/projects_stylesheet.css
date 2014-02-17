@@ -8,18 +8,18 @@ body {
 
 #layoutbuttons {
 	display: inline-table;
-	padding-top: 5em;
+	padding-top: 3em;
 }
 
 .layoutbutton {
-	display: table-cell;
-	background-color: rgb(220,220,220);
+	border: 0px;
 	color: rgb(104,104,104);
 	font-family: Verdana;
 	font-size: 0.9em;
 }
 
 #listv {
+	background-color: rgb(220,220,220);
 	padding: 1.2em;
 	border-top-left-radius: 1em;
 	border-bottom-left-radius: 1em;
