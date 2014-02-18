@@ -27,8 +27,7 @@
 	float: left;
 	text-align: left;
 	padding-right: 1em;
-	top: 0;
-	bottom: 0;
+	vertical-align: middle;
 }
 
 #introname {
