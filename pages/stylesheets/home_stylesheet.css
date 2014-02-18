@@ -1,6 +1,7 @@
 #introbox {
 	background-color: rgb(242,242,242);
 	position: absolute;
+	text-align: center;
 	top: 0;
 	bottom: 0;
 	left: 0;
@@ -8,7 +9,6 @@
 }
 
 #introduction {
-	text-align: center;
 	display: inline-block;
 	vertical-align: middle;
 }
