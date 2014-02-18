@@ -44,6 +44,17 @@ div#menu {
 	padding-top: 1em;
 }
 
+#footerborder {
+	left: 0;
+	right: 0;
+	display: inline-block;
+}
+
+#leftborder {
+	border-height: 1em;
+	-webkit-border-image: -webkit-linear-gradient(black, rgb(242,242,242)) 1 100%;
+}
+
 #footer {
 	display: inline-block;
 	width: 100%;
