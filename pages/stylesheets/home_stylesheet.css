@@ -11,15 +11,14 @@
 #introduction {
 	display: inline-block;
 	height: 100%;
-	vertical-align: middle;
+	top: 0;
+	bottom: 0;
 }
 
 #intropicture {
 	height: 45em;
 	float: right;
 	padding-left: 1em;
-	top: 0;
-	bottom: 0;
 }
 
 #introtext {
