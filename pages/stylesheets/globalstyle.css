@@ -52,6 +52,7 @@ div#menu {
 
 #leftborder {
 	border-height: 1em;
+	border-top: 1em solid black;
 	-webkit-border-image: -webkit-linear-gradient(black, rgb(242,242,242)) 1 100%;
 }
 
