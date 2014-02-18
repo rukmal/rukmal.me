@@ -10,6 +10,8 @@
 
 #introduction {
 	display: inline-block;
+	top: 0;
+	bottom: 0;
 }
 
 #intropicture {
