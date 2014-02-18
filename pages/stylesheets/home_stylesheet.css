@@ -35,6 +35,11 @@
 	font-size: 1.5em;
 }
 
+#footerborder {
+	height: 1px;
+	text-align: center;
+}
+
 #footer {
 	position: fixed;
 }
