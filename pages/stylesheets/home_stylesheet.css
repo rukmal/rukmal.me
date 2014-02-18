@@ -10,8 +10,7 @@
 
 #introduction {
 	display: inline-block;
-	top: 0;
-	bottom: 0;
+	vertical-align: middle;
 }
 
 #intropicture {
@@ -28,7 +27,6 @@
 	float: left;
 	text-align: left;
 	padding-right: 1em;
-	vertical-align: center;
 }
 
 #introname {
