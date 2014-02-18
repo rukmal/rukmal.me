@@ -18,6 +18,7 @@
 	float: right;
 	padding-left: 1em;
 	margin-top: 0.2em;
+	padding-top: 50%;
 }
 
 #introtext {
@@ -26,7 +27,7 @@
 	float: left;
 	text-align: left;
 	padding-right: 1em;
-	padding-top: 7em;
+	padding-top: 50%;
 }
 
 #introname {
