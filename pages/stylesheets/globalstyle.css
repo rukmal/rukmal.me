@@ -47,7 +47,6 @@ div#menu {
 #footer {
 	border-top: 1px solid rgb(208,208,208);
 	display: inline-block;
-	width: 100%;
 	font-size: 1em;
 	font-family: "Myriad Pro", Helvetica, Verdana;
 	background-color: rgb(242,242,242);
@@ -57,5 +56,4 @@ div#menu {
 	padding-bottom: 1em;
 	text-align: center;
 	bottom: 0;
-	margin-left: 5em;
 }
