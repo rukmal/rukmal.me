@@ -48,6 +48,8 @@ div#menu {
 	border-top: 1px solid rgb(208,208,208);
 	display: inline-block;
 	font-size: 1em;
+	margin-left: 0;
+	margin-right: 0;
 	font-family: "Myriad Pro", Helvetica, Verdana;
 	background-color: rgb(242,242,242);
 	margin-top: 3em;
