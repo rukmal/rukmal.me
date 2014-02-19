@@ -1,32 +1,31 @@
+html {
+	height: 100%;
+}
+
 #introbox {
-	background-color: rgb(242,242,242);
-	position: absolute;
-	text-align: center;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
+	height: 100%;
+	display: table;
+	margin: 0 auto;
 }
 
 #introduction {
-	display: inline-block;
-	height: 100%;
-	top: 0;
-	bottom: 0;
+	display: table-cell;
+	vertical-align: middle;
 }
 
 #intropicture {
-	height: 45em;
+	height: 30em;
 	float: right;
-	padding-left: 1em;
+	padding-left: 1.5em;
 }
 
 #introtext {
+	padding-top: 20%;
 	font-family: Courier;
 	font-size: 1.6em;
 	float: left;
 	text-align: left;
-	padding-right: 1em;
+	padding-right: 1.5em;
 }
 
 #introname {
@@ -36,6 +35,5 @@
 }
 
 #footer {
-	border-top: 1px solid rgb(192,192,192);
 	position: fixed;
 }

@@ -2,6 +2,8 @@ body {
 	margin: 0;
 	height: 100%;
 	width: 100%;
+	background-color: rgb(242,242,242);
+
 }
 
 div#menu {

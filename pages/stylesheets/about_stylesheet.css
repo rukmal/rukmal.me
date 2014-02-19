@@ -67,5 +67,5 @@ body {
 }
 
 #footer {
-	poition: static;
+	poition: fixed;
 }
