@@ -5,7 +5,7 @@ This website is my attempt to have a centralized social 'hub' on the internet. I
 ##Current Implementation
 Currently, the site does not do very much in terms of needing a functioning backend, as no site-related server side processing has to be done yet. Because of this, the only JavaScript currently in use is limited to the jQuery objects being used to control the animations on the site.
 
-The site is being hosted on an [Amazon EC2](http://aws.amazon.com/ec2/) server, which is running [Ubuntu](http://ubuntu.org) 13.10 server. Instead of using the more conventional Apache Web Server to host the site, I have decided to use [Node.js](http://nodejs.org) along with [ExpressJS](http://expressjs.com/), both due to it being a LOT easier to use, and also because - when I do need it - any server-side processing can be done in JavaScript.
+The site is being hosted on an [Amazon EC2](http://aws.amazon.com/ec2/) server, which is running [Ubuntu](http://ubuntu.com) 13.10 server. Instead of using the more conventional Apache Web Server to host the site, I have decided to use [Node.js](http://nodejs.org) along with [ExpressJS](http://expressjs.com/), both due to it being a LOT easier to use, and also because - when I do need it - any server-side processing can be done in JavaScript.
 
 ##Future Plans
 I hope to expand the site to include my blog, which has been largely unused for a while. I used to host it on blogger, but to go along with the whole DIY theme of this site, I plan on hosting and managing it on my server as well.
