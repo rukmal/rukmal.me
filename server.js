@@ -3,7 +3,7 @@
  * @email rukmal.weerawarana@gmail.com
  *
  * This script starts and manages bad requests for the Node.js server used
- * to host the site on a Raspberry Pi.
+ * to host the site on an Amazon EC2 server.
  */
 
 'use strict'
@@ -16,12 +16,12 @@ var port = 3000;
 //Log all requests
 app.use(express.logger('dev'));
 
-// Pass all static requests to express.static
+//Pass all static requests to express.static
 app.use(express.static(path.join(__dirname, 'pages')));
 
-// Route for everything else
+//404 for everything else
 app.get('*', function(req, res) {
-	res.send("Sorry, the page you were looking for does not exist.");
+	res.sendfile(__dirname + '/pages/404.html');
 });
 
 //Starting the server up

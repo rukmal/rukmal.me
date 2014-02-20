@@ -21,7 +21,6 @@ body {
 
 .aboutbox span {
 	display: table-cell;
-	vertical-align: middle;
 	text-align: center;
 	font-size: 1.3em;
 	font-family: Open Sans, Verdana, Helvetica;
@@ -55,7 +54,7 @@ body {
 }
 
 #uw span {
-	margin-top: 3em;
+	margin-top: 2.5em;
 }
 
 #bsc span {
@@ -64,6 +63,19 @@ body {
 
 #ib span {
 	margin-top: 2.65em;
+}
+
+#computers span {
+	margin-top: 2.5em;
+}
+
+#conclusion span {
+	margin-top: 2.45em;
+}
+
+#conclusion span p {
+	line-height: 0.4em;
+	font-size: 0.8em;
 }
 
 #footer {
