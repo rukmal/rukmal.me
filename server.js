@@ -6,24 +6,40 @@
  * to host the site on an Amazon EC2 server.
  */
 
-'use strict'
-
-var path = require('path');
 var express = require('express');
+var http = require('http');
+var path = require('path');
+
 var app = express();
-var port = 80;
 
-//Log all requests
+// all environments
+app.set('port', process.env.PORT || 80);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+app.use(express.favicon(path.join(__dirname, 'public/images/page_icon.ico')));
 app.use(express.logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded());
+app.use(express.methodOverride());
+app.use(express.cookieParser('your secret here'));
+app.use(express.session());
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
 
-//Pass all static requests to express.static
-app.use(express.static(path.join(__dirname, 'pages')));
+// development only
+if ('development' == app.get('env')) {
+  app.use(express.errorHandler());
+}
 
-//404 for everything else
-app.get('*', function(req, res) {
-	res.sendfile(__dirname + '/pages/404.html');
+// Linking the routes file to the app.
+require('./routes/routes')(app);
+
+// Redirecting 404 errors
+app.use(function(req, res) {
+ 	res.status(404);
+    res.render('404');
 });
 
-//Starting the server up
-app.listen(port);
-console.log('listening on port ' + port);
+http.createServer(app).listen(app.get('port'), function(){
+  console.log('Express server listening on port ' + app.get('port'));
+});
