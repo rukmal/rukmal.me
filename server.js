@@ -9,6 +9,7 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var siteName = 'Rukmal\'s World - ';
 
 var app = express();
 
@@ -37,7 +38,9 @@ require('./routes/routes')(app);
 // Redirecting 404 errors
 app.use(function(req, res) {
  	res.status(404);
-    res.render('404');
+    res.render('404', {
+    	title: siteName + 'Page not found'
+    });
 });
 
 http.createServer(app).listen(app.get('port'), function(){

@@ -4,26 +4,38 @@
  * Main routes file for http://rukmal.me
  */
 
- 'use strict'
+'use strict'
+
+var siteName = 'Rukmal\'s World - '
 
 module.exports = function(app) {
 	app.get('/', function(req, res) {
-		res.render('home');
+		res.render('home', {
+			title: siteName + 'Home'
+		});
 	});
 
 	app.get('/about', function(req, res) {
-		res.render('about');
+		res.render('about', {
+			title: siteName + 'About'
+		});
 	});
 
 	app.get('/projects', function(req, res) {
-		res.render('projects');
+		res.render('projects', {
+			title: siteName + 'Projects'
+		});
 	});
 
 	app.get('/contact', function(req, res) {
-		res.render('contact');
+		res.render('contact', {
+			title : siteName + 'Contact'
+		});
 	});
 
 	app.get('/blog', function(req, res) {
-		res.render('blog');
+		res.render('blog', {
+			title: siteName + 'Blog'
+		});
 	});
 };
