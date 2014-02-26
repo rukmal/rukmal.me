@@ -1,77 +1,55 @@
-doctype HTML
-//@author Rukmal Weerawarana
-//@email rukmal.weerawarana@gmail.com
-html
-	head
-		link(href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css')
-		link(type="text/css" rel="stylesheet" href="stylesheets/about_stylesheet.css")
-		link(type="text/css" rel="stylesheet" href="stylesheets/globalstyle.css")
-		title= title
-		script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
-		script(src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js")
-		script(src="js_files/about_script.js")
-		script(src="js_files/global_script.js")
-	body
-		div#menu
-			a(href="/").link
-				div.menuoption Home
-			a(href="about").link
-				div.menuoption About Me
-			a(href="projects").link
-				div.menuoption Projects
-			a(href="blog").link
-				div.menuoption Blog
-			a(href="contact").link
-				div.menuoption Contact
-		div#menufiller
-		p#titletext Hello.
-		div#aboutme
-			div.aboutbox.leftbox#uw
-				span.
-					I am currently a freshman at the 
-					<a href="http://www.washington.edu" target="_blank" class="link"> University of Washington</a> in Seattle, WA.
-					<br>
-					<br>
-					I intend to major in <a href="http://www.cs.washington.edu" target="_blank" class="link">Computer Science</a>, and
-					am currently completing coursework that will allow me to apply to the department by July 2014.
-				img(src="images/uw_logo.png")
-			br
-			div.aboutbox.rightbox#bsc
-				span.
-					I graduated from <a href="http://britishschool.lk" target="_blank" class="link">The British School in Colombo</a>
-					in July 2013.
-					<br>
-					<br>
-					Prior to BSC, I attended 4 schools both in Sri Lanka and the United States which has given me a unique perspective of the world.
-				img(src="images/bsc_logo.png")
-			br
-			div.aboutbox.leftbox#ib
-				span.
-					I received the <a href="https://www.ibo.org/diploma/" target="_blank" class="link">International Baccalaureate
-					Diploma</a> when I graduated from high school.
-					<br>
-					<br>
-					I completed coursework in Higher Level Mathematics,
-					Physics and Chemistry as well as in Standard
-					Level English, Spanish and Geography.
-				img(src="images/ib_logo.png")
-			br
-			div.aboutbox.rightbox#computers
-				span.
-					I am very passionate about computers and computer technology in general.
-					<br>
-					<br>
-					From <a href="http://rukmal.weerawarana.org" target="_blank" class="link">a very early age</a>,
-					I have demonstrated a keen interest in computers and have since fostered that interest into the skills I have today.
-				img(src="images/code_funny.png")
-			br
-			div.aboutbox.leftbox#conclusion
-				span.
-					I am a motivated, inspired and driven individual, and I can't wait to make a dent in the Universe.
-					<br>
-					<br>
-					<i>"Because the people who are crazy enough to think they can change the world, are the ones who do."</i>
-					<p>Ken Segall and Rob Siltanen, <a href="http://tbwachiatday.com/" target="_blank" class="link">TWBA\Chiat\Day</a></p>
-				img(src="images/earthrise.png")
-		div#footer.
-			Designed and developed by Rukmal Weerawarana.
+extends layout
+
+block content
+	link(type="text/css" rel="stylesheet" href="stylesheets/about_stylesheet.css")
+	script(src="js_files/about_script.js")
+	div#menufiller
+	p#titletext Hello.
+	div#aboutme
+		div.aboutbox.leftbox#uw
+			span.
+				I am currently a freshman at the 
+				<a href="http://www.washington.edu" target="_blank" class="link"> University of Washington</a> in Seattle, WA.
+				<br>
+				<br>
+				I intend to major in <a href="http://www.cs.washington.edu" target="_blank" class="link">Computer Science</a>, and
+				am currently completing coursework that will allow me to apply to the department by July 2014.
+			img(src="images/uw_logo.png")
+		br
+		div.aboutbox.rightbox#bsc
+			span.
+				I graduated from <a href="http://britishschool.lk" target="_blank" class="link">The British School in Colombo</a>
+				in July 2013.
+				<br>
+				<br>
+				Prior to BSC, I attended 4 schools both in Sri Lanka and the United States which has given me a unique perspective of the world.
+			img(src="images/bsc_logo.png")
+		br
+		div.aboutbox.leftbox#ib
+			span.
+				I received the <a href="https://www.ibo.org/diploma/" target="_blank" class="link">International Baccalaureate
+				Diploma</a> when I graduated from high school.
+				<br>
+				<br>
+				I completed coursework in Higher Level Mathematics,
+				Physics and Chemistry as well as in Standard
+				Level English, Spanish and Geography.
+			img(src="images/ib_logo.png")
+		br
+		div.aboutbox.rightbox#computers
+			span.
+				I am very passionate about computers and computer technology in general.
+				<br>
+				<br>
+				From <a href="http://rukmal.weerawarana.org" target="_blank" class="link">a very early age</a>,
+				I have demonstrated a keen interest in computers and have since fostered that interest into the skills I have today.
+			img(src="images/code_funny.png")
+		br
+		div.aboutbox.leftbox#conclusion
+			span.
+				I am a motivated, inspired and driven individual, and I can't wait to make a dent in the Universe.
+				<br>
+				<br>
+				<i>"Because the people who are crazy enough to think they can change the world, are the ones who do."</i>
+				<p>Ken Segall and Rob Siltanen, <a href="http://tbwachiatday.com/" target="_blank" class="link">TWBA\Chiat\Day</a></p>
+			img(src="images/earthrise.png")
