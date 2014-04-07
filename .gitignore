@@ -1,5 +1,2 @@
-#ignoring node packages
-node_modules
-
-#ignoring system files
 .DS_Store
+node_modules
