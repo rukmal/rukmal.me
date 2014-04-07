@@ -16,7 +16,7 @@
  		$(this).animate({'zoom':'1'}, 120);
  	})
 
- 	$('#nodeblog, #huskycourseminer, #rukmalme, #footer').hide().each(function(i) {
+ 	$('#leappong, #nodeblog, #huskycourseminer, #rukmalme, #footer').hide().each(function(i) {
  		$(this).delay(225 * i).fadeIn(500, 'swing');
  	})
  })
