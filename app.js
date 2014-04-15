@@ -2,14 +2,13 @@
  * @author Rukmal Weerawarana
  * @email rukmal.weerawarana@gmail.com
  *
- * This script starts and manages bad requests for the Node.js server used
- * to host the site on an Amazon EC2 server.
+ * @description This script starts and manages bad requests for the
+ * Node.js server used to host the site on an Amazon EC2 server.
  */
 
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var siteName = 'Rukmal\'s World - ';
 
 var app = express();
 
