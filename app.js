@@ -12,6 +12,8 @@ var path = require('path');
 
 var app = express();
 
+var siteName = 'Rukmal\'s World - '
+
 // all environments
 app.set('port', process.env.PORT || 80);
 app.set('views', path.join(__dirname, 'views'));
