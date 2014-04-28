@@ -68,6 +68,10 @@ body {
 	border-bottom-left-radius: 1.2em;
 }
 
+#spotifyinstant span {
+	margin-top: 0.4em;
+}
+
 #uwopendata span {
 	margin-top: -0.2em;
 }
