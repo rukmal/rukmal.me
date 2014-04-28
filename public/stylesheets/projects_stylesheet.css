@@ -6,6 +6,13 @@ body {
 	color: rgb(112,112,112);
 }
 
+#descriptiontext {
+	text-align: center;
+	font-size: 1.3em;
+	font-family: "Myriad Pro", Helvetica, Verdana;
+	font-style: italic;
+}
+
 #myprojects {
 	margin: 0 auto;
 	text-align: center;
@@ -59,6 +66,10 @@ body {
 	float: left;
 	border-top-left-radius: 1.2em;
 	border-bottom-left-radius: 1.2em;
+}
+
+#uwopendata span {
+	margin-top: -0.2em;
 }
 
 #flappyleapbird span {
