@@ -7,13 +7,6 @@ Currently, the site does not do very much for it to justify needing a functionin
 
 The site is being hosted on an [Amazon EC2](http://aws.amazon.com/ec2/) server, which is running [Ubuntu](http://ubuntu.com) 13.10 server. Instead of using the more conventional Apache Web Server to host the site, I have decided to use [Node.js](http://nodejs.org) along with [ExpressJS](http://expressjs.com/), both due to it being a LOT easier to use, and also because - when I do need it - any server-side processing can be done in JavaScript.
 
-##Future Plans
-I hope to expand the site to include my blog, which has been largely unused for a while. I used to host it on blogger, but to go along with the whole DIY theme of this site, I plan on hosting and managing it on my server as well.
-
-Currently, I have no concrete plans as to how I'm going to implement this, but I hope to eventually include an actual 'comments' section for the blog. I plan to use some combination of JS and JSON to manage the data for me, as this will go well with the Node.js server implementation I'm currently using.
-
-On the server side, if I do ever have to include additional servers, I hope to continue to use Node.js and ExpressJS by implementing some form of load-balancing between the two (or more) servers that I may eventually need.
-
 ##Contact
 Any comments are welcome!
 
