@@ -68,6 +68,10 @@ body {
 	border-bottom-left-radius: 1.2em;
 }
 
+#projecteulersolutions span {
+	margin-top: 0.35em;
+}
+
 #spotifyinstant span {
 	margin-top: 0.4em;
 }
