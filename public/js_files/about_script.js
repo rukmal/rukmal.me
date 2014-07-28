@@ -15,7 +15,7 @@
  		$(this).animate({'zoom':'1'}, 120);
  	})
 
- 	$('#uw, #mullinslab, #srilanka, #bsc, #ib, #computers, #conclusion, #footer').hide().each(function(i) {
+ 	$('#uw, #wso2, #mullinslab, #srilanka, #bsc, #ib, #computers, #conclusion, #footer').hide().each(function(i) {
  		$(this).delay(225 * i).fadeIn(500, 'swing');
  	})
  })
