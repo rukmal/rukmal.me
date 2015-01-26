@@ -1,0 +1,15 @@
+{
+  "name": "rukmal.me",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-jade": "^0.12.0",
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-watch": "latest",
+    "jshint-stylish": "latest"
+  }
+}
