@@ -28,7 +28,7 @@ module.exports = function(grunt) {
       },
       build: {
         files: {
-          'dist/js/custom.min.js': ['js/*.js']
+          'dist/js/custom.min.js': ['js/*.js', 'bower_components/*/dist/*.min.js', 'bower_components/*/dist/**/*.min.js']
         }
       }
     },
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
       },
       build: {
         files: {
-          'dist/css/style.min.css': ['css/*.css']
+          'dist/css/style.min.css': ['css/*.css', 'bower_components/*/dist/*.min.css', 'bower_components/*/dist/**/*.min.css']
         }
       }
     },
@@ -83,7 +83,7 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('default', ['jshint', 'uglify', 'cssmin']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'cssmin', 'jade']);
   grunt.registerTask('dev', ['watch']);
 
   // ===========================================================================
