@@ -12,6 +12,7 @@
 	-moz-background-size: cover;
 	background-size: cover;
 	-o-background-size: cover;
+	top: 0;
 }
 
 .intro .intro-body {
