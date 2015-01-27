@@ -18,7 +18,7 @@ module.exports = function(grunt) {
       },
 
     // when this task is run, lint the Gruntfile and all js files in src
-      build: ['Grunfile.js', 'js/*.js']
+      build: ['Grunfile.js', 'js/*.js', '!js/main.js']
     },
 
     // configure uglify to minify js files -------------------------------------
@@ -28,7 +28,8 @@ module.exports = function(grunt) {
       },
       build: {
         files: {
-          'dist/js/custom.min.js': ['bower_components/*/*.min.js', 'bower_components/*/dist/*.min.js', 'bower_components/*/dist/**/*.min.js', 'js/*.js']
+          'dist/js/initial.min.js': ['bower_components/jquery/**/*.min.js', 'bower_components/spinjs/spin.js', 'js/initial.js'],
+          'dist/js/main.min.js': ['bower_components/**/*.min.js', 'js/*.js', '!js/initial.js', '!bower_components/jquery/*']
         }
       }
     },
@@ -40,7 +41,8 @@ module.exports = function(grunt) {
       },
       build: {
         files: {
-          'dist/css/style.min.css': ['bower_components/*/*.min.css', 'bower_components/*/dist/*.min.css', 'bower_components/*/dist/**/*.min.css', 'css/*.css']
+          'dist/css/initial.min.css': ['css/initial.css'],
+          'dist/css/style.min.css': ['bower_components/**/*.min.css', 'css/*.css', '!css/initial.css']
         }
       }
     },
