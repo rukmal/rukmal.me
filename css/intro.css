@@ -1,0 +1,52 @@
+.intro {
+	display: table;
+	width: 100%;
+	height: auto;
+	padding: 100px 0;
+	text-align: center;
+	color: #fff;
+	background: url(/images/red_square.jpg);
+	background-size: 100%;
+	background-color: #000;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+}
+
+.intro .intro-body {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.intro .intro-body .brand-heading {
+	font-size: 40px;
+	font-family: 'Josefin Sans', sans-serif;
+	color: white;
+}
+
+.intro .intro-body .intro-text {
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 18px;
+}
+
+#banner {
+	background-color: black;
+	-webkit-filter: grayscale(100%);
+	opacity: 0.74;
+}
+
+@media(min-width:767px) {
+	.intro {
+		height: 100%;
+		padding: 0;
+	}
+
+	.intro .intro-body .brand-heading {
+		font-size: 80px;
+	}
+
+	.intro .intro-body .intro-text {
+		font-size: 25px;
+	}
+}
