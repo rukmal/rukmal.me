@@ -21,6 +21,15 @@ $ bower install
 $ grunt watch
 ```
 
+## Design Notes
+
+|Order|Page Load Workflow|
+|:---:|:-----------------|
+|1|Initial Page Loaded (HTML and Basic CSS+JS, with SpinnerJS and jQuery)|
+|2|Remaining CSS and JS loaded asynchronously using jQuery's ajax functions|
+|3|Spinner removed on final resource load|
+|4|Page displayed|
+
 ## Contact
 
 This is an open source project released under the [MIT License](LICENSE). Contact me if you want to suggest an improvement, or fork and send a pull request!
