@@ -23,7 +23,7 @@ function fadeOutSpinner () {
 			});
 		}
 	});
-};
+}
 
 $.getScript('dist/js/main.min.js', fadeOutSpinner);
 
