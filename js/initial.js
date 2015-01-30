@@ -25,8 +25,6 @@ function fadeOutSpinner () {
 	});
 }
 
-$.getScript('dist/js/main.min.js', fadeOutSpinner);
-
 $.when(
 	$.getScript('dist/js/main.min.js'),
 	$('head').append('<link href="dist/css/style.min.css" rel="stylesheet">')

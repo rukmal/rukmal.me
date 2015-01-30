@@ -1,0 +1,45 @@
+.about {
+	display: table;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: #fff;
+	background-size: 100%;
+	background-color: #000;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+	top: 0;
+}
+
+.about .about-body {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.row#aboutrow {
+	height: 100%;
+	margin-left: 0;
+	margin-right: 0;
+}
+
+#aboutcategory-school {
+	background-color: red;
+}
+
+#aboutcategory-work {
+	background-color: green;
+}
+
+#aboutcategory-personal {
+	background-color: blue;
+	float: right;
+}
+
+#aboutcategoryback {
+	color: white;
+	font-size: 75px;
+	float: left;
+	opacity: 0;
+}
