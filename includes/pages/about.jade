@@ -1,10 +1,19 @@
 .about
-	.row
-		span.glyphicon.glyphicon-circle-arrow-left#aboutcategoryback
+	.row#aboutbackcontainer
+		span.glyphicon.glyphicon-circle-arrow-left#aboutback
 	.row#aboutrow
 		.col-md-4#aboutcategory-school.aboutcategory
-			h1 School
+			.aboutcategorytitlecontainer
+				.aboutcategorytitle-body
+					img(src="/images/uw_logo.png").aboutcategorytitleimage.img-circle
+					h1.aboutcategorytitle School
 		.col-md-4#aboutcategory-work.aboutcategory
-			h1 Work
+			.aboutcategorytitlecontainer
+				.aboutcategorytitle-body
+					img(src="/images/coding_image.png").aboutcategorytitleimage.img-circle
+					h1.aboutcategorytitle Work
 		.col-md-4#aboutcategory-personal.aboutcategory
-			h1 Personal
+			.aboutcategorytitlecontainer
+				.aboutcategorytitle-body
+					img(src="/images/personal_image.png").aboutcategorytitleimage.img-circle
+					h1.aboutcategorytitle Personal

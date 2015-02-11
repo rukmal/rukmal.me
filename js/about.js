@@ -5,7 +5,7 @@ $('div[id*="aboutcategory"').on('click', function () {
 	animateCategory('#' + $(this).attr('id'));
 });
 
-$('#aboutcategoryback').on('click', function () {
+$('#aboutback').on('click', function () {
 	resetAnimation();
 });
 
@@ -18,7 +18,7 @@ function animateCategory (category) {
 			'width': '10%'
 		}, {
 			'queue': false,
-			// 'duration': '100',
+			'duration': '100',
 			'easing': 'linear'
 		});
 	});
@@ -29,7 +29,7 @@ function animateCategory (category) {
 		'duration': '200',
 		'easing': 'linear'
 	});
-	$('#aboutcategoryback').fadeTo(200, 1);
+	$('#aboutback').fadeTo(200, 1);
 }
 
 function resetAnimation () {
@@ -51,5 +51,5 @@ function resetAnimation () {
 		'duration': '185',
 		'easing': 'linear'
 	});
-	$('#aboutcategoryback').fadeTo(200, 0);
+	$('#aboutback').fadeTo(200, 0);
 }
