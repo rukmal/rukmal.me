@@ -84,4 +84,6 @@
 #aboutbackcontainer {
 	position: absolute;
 	z-index: 300;
+	padding-left: 60px;
+	padding-top: 30px;
 }

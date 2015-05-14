@@ -15,7 +15,7 @@ function animateCategory (category) {
 	minCategories.splice(minCategories.indexOf(category), 1);
 	$.each(minCategories, function (index, value) {
 		$(value).animate({
-			'width': '10%'
+			'width': '20%'
 		}, {
 			'queue': false,
 			'duration': '100',
@@ -23,7 +23,7 @@ function animateCategory (category) {
 		});
 	});
 	$(category).animate({
-		'width': '80%'
+		'width': '60%'
 	}, {
 		'queue': false,
 		'duration': '200',
