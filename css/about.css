@@ -58,6 +58,10 @@
 	-o-background-size: cover;
 }
 
+.aboutcategory-description {
+	display: none;
+}
+
 #aboutcategory-school {
 	background: url('/images/rainier_vista.png');
 	background-size: 100% 100%;
