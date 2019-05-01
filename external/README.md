@@ -5,3 +5,4 @@ I used a bunch of external libraries and resources for this site; I have probabl
 |File|Description|Source|
 |:--:|:----------|:----:|
 |[navbar-fixed-left.min.css](css/navbar-fixed-left.min.css)|Left-fixed navbar|https://github.com/mladenplavsic/bootstrap-navbar-sidebar|
+|[particles.min.js](js/particles.min.js)|Particles.js Canvas Particles|https://github.com/VincentGarreau/particles.js|
