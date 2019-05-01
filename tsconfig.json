@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "module": "commonjs",
         "rootDir": "ts",
         "outDir": "dist/js"
     },
