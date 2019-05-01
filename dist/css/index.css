@@ -7,7 +7,7 @@
 #full_name {
   color: white;
   font-family: "IBM Plex Sans", sans-serif;
-  font-weight: bold;
+  font-size: 3em;
 }
 
 .main_description {
@@ -27,6 +27,12 @@
   width: 100%;
   height: 100%;
   z-index: 0;
+}
+
+#main_content_box {
+  background-color: rgba(0, 0, 0, 0);
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 /*# sourceMappingURL=index.css.map */
