@@ -1,5 +1,7 @@
 $full_name_font: "IBM Plex Sans", sans-serif;
 $full_name_color: rgb(255, 255, 255);
+$main_content_border_box_pad: 10px;
+$main_content_box_opacity: 0;
 
 #main_landing_img {
     height: 250px;
@@ -10,7 +12,8 @@ $full_name_color: rgb(255, 255, 255);
 #full_name {
     color: $full_name_color;
     font-family: $full_name_font;
-    font-weight: bold;
+    // font-weight: bold;
+    font-size: 3em;
 }
 
 .main_description {
@@ -30,4 +33,14 @@ $full_name_color: rgb(255, 255, 255);
     width: 100%;
     height: 100%;
     z-index: 0;
+}
+
+#main_content_box {
+    background-color: rgba(0, 0, 0, $main_content_box_opacity);
+    padding-top: $main_content_border_box_pad;
+    padding-bottom: $main_content_border_box_pad;
+}
+
+#home_nav_item {
+    
 }
