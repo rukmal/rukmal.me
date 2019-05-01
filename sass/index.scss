@@ -1,0 +1,24 @@
+$full_name_font: "IBM Plex Sans", sans-serif;
+$full_name_color: rgb(255, 255, 255);
+
+#main_landing_img {
+    height: 250px;
+    width: 250px;
+    border: 2px solid $full_name_color;
+}
+
+#full_name {
+    color: $full_name_color;
+    font-family: $full_name_font;
+    font-weight: bold;
+}
+
+#main_description {
+    color: $full_name_color;
+    font-family: $full_name_font;
+    font-size: 1em;
+}
+
+.descr_emph {
+    font-weight: bold;
+}
