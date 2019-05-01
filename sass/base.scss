@@ -1,4 +1,7 @@
 $main_background_color: rgba(28, 126, 255, 0.8);
+$footer_font: 'IBM Plex Sans', sans-serif;
+$sidebar_width: 232px; // From navbar-fixed-left.min.css
+$bootstrap_navbar_collapse_limit: 768px; // From bootstrap (default limit)
 
 body {
     min-height: 100%;
@@ -11,10 +14,30 @@ a {
     cursor: pointer;
 }
 
-.vertical-center {
-    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-    min-height: 100vh; /* These two lines are counted as one :-)       */
+#pagefooter {
+    background-color: white;
+    z-index: 0;
+    font-family: $footer_font;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
 
-    display: flex;
-    align-items: center;
+@media (min-width: $bootstrap_navbar_collapse_limit) {
+    .vertical-center {
+        min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+        min-height: 100vh; /* These two lines are counted as one :-)       */
+    
+        display: flex;
+        align-items: center;
+    }
+    #pagefooter {
+        padding-left: $sidebar_width;
+    }
+}
+
+@media (max-width: $bootstrap_navbar_collapse_limit) {
+    #pagefooter {
+        position: relative;
+    }
 }
