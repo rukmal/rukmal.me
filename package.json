@@ -22,6 +22,9 @@
   },
   "homepage": "http://git.rukmal.me/rukmal.me",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc & sass sass:dist/css",
+    "watch-ts": "tsc -w",
+    "watch-sass": "sass --watch sass:dist/css",
+    "serve": "jekyll serve"
   }
 }
