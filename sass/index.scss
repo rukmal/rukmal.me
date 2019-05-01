@@ -2,10 +2,11 @@ $full_name_font: "IBM Plex Sans", sans-serif;
 $full_name_color: rgb(255, 255, 255);
 $main_content_border_box_pad: 10px;
 $main_content_box_opacity: 0;
+$main_img_dim: 300px;
 
 #main_landing_img {
-    height: 250px;
-    width: 250px;
+    height: $main_img_dim;
+    width: $main_img_dim;
     border: 3px solid $full_name_color;
 }
 
