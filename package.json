@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/rukmal/rukmal.me/issues"
   },
-  "homepage": "http://git.rukmal.me/rukmal.me"
+  "homepage": "http://git.rukmal.me/rukmal.me",
+  "scripts": {
+    "build": "tsc"
+  }
 }
