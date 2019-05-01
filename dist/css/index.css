@@ -1,7 +1,7 @@
 #main_landing_img {
   height: 250px;
   width: 250px;
-  border: 2px solid white;
+  border: 3px solid white;
 }
 
 #full_name {
@@ -20,7 +20,7 @@
   font-weight: bold;
 }
 
-#particles-js {
+#particles-js canvas {
   position: absolute;
   top: 0;
   left: 0;

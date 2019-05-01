@@ -12,13 +12,33 @@ a {
   cursor: pointer;
 }
 
-.vertical-center {
-  min-height: 100%;
-  /* Fallback for browsers do NOT support vh unit */
-  min-height: 100vh;
-  /* These two lines are counted as one :-)       */
-  display: flex;
-  align-items: center;
+#pagefooter {
+  background-color: white;
+  z-index: 0;
+  font-family: "IBM Plex Sans", sans-serif;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .vertical-center {
+    min-height: 100%;
+    /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh;
+    /* These two lines are counted as one :-)       */
+    display: flex;
+    align-items: center;
+  }
+
+  #pagefooter {
+    padding-left: 232px;
+  }
+}
+@media (max-width: 768px) {
+  #pagefooter {
+    position: relative;
+  }
 }
 
 /*# sourceMappingURL=base.css.map */
