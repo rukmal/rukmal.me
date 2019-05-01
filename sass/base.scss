@@ -1,0 +1,10 @@
+$main_background_color: rgb(0, 112, 255);
+
+body {
+    min-height: 200vh;
+    background-color: $main_background_color
+}
+
+a {
+    cursor: pointer;
+}
