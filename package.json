@@ -1,0 +1,24 @@
+{
+  "name": "rukmal.me",
+  "version": "2.0.0",
+  "description": "Rukmal Weerawarana's personal website.",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rukmal/rukmal.me.git"
+  },
+  "keywords": [
+    "website",
+    "rukmal",
+    "weerawarana"
+  ],
+  "author": "Rukmal Weerawarana",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rukmal/rukmal.me/issues"
+  },
+  "homepage": "http://git.rukmal.me/rukmal.me"
+}
