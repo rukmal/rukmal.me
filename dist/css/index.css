@@ -10,7 +10,7 @@
   font-weight: bold;
 }
 
-#main_description {
+.main_description {
   color: white;
   font-family: "IBM Plex Sans", sans-serif;
   font-size: 1em;
