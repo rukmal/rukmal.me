@@ -7,7 +7,3 @@ $.get(url, function (data) {
     // NOTE: This works, just need to use Turtle serialization instead of RDF/XML.
     // Fuck you, rdflibjs
 });
-console.log('hello world!');
-function test() {
-    console.log('hello world');
-}
