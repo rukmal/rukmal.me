@@ -36,3 +36,16 @@ function getDBpediaData(dbpedia_resource, result_trigger) {
         }
     });
 }
+
+/**
+ * Function to update the current active tab in the sidebar (must be called on
+ * each page load; need to do this because this is not a single-page webapp)
+ * 
+ * @param {string} current_tab Current tab ID.
+ */
+function updateActiveTab(current_tab) {
+    // Remove all active class tabs enabled (if any)
+    $('navbar > li').removeClass('active');
+    // Add active class to current tab
+    $(current_tab).addClass('active');
+}
