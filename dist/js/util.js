@@ -49,3 +49,21 @@ function updateActiveTab(current_tab) {
     // Add active class to current tab
     $(current_tab).addClass('active');
 }
+
+
+/**
+ * Function to compare the dates of two objects from a SPARQL query, and to
+ * return sort values appropriate to sort the objects in descending 
+ * temporal order (i.e. to be used with `arr.sort()`).
+ * 
+ * @param {Object} a Candidate SPARQL return object (from query).
+ * @param {Object} b Candidate SPARQL return object (from query).
+ */
+function compareDateDesc(a, b) {
+    // Create date objects
+    var d1 = new Date(a['?date'].value);
+    var d2 = new Date(b['?date'].value);
+    
+    // Return (positive -> sorted first)
+    return (d2.getTime() - d1.getTime());
+}

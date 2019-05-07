@@ -6,6 +6,7 @@ const rukmal_data_graph_url = 'https://raw.githubusercontent.com/rukmal/Resume/g
 const store_mimeType = 'application/rdf+xml';
 const store_base_uri = 'http://precis.rukmal.me/'
 
+
 /**
  * Function to load graph data.
  * 
@@ -66,6 +67,7 @@ function downloadGraphData(dataHandler, dataHandlerArg) {
     });
 }
 
+
 /**
  * Function to build a store and load graph data.
  * 
@@ -82,4 +84,38 @@ function buildGraph(data, graphHandler) {
 
     // Calling graph handler function with the graph data
     graphHandler(store);
+}
+
+
+/**
+ * Function to get all nodes of a given type from the Precis knowledge graph.
+ * 
+ * @param {Object} store RDFLib.js Store.
+ * @param {String} type_name Target type to get.
+ * @param {Callback} resCallback Callback function called with each result.
+ * @param {Callback} doneCallback Callback function called when query is complete.
+ */
+function getOfType(store, type_name, resCallback, doneCallback) {
+    // SPARQL query (plain text)
+    var sparql_query = `
+    PREFIX precis: <http://precis.rukmal.me/ontology#>
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    SELECT ?name ?date ?engl_name
+    WHERE {
+        ?name rdf:type precis:${type_name} .
+        ?name precis:hasDate ?date .
+    }
+    `;
+
+    // Converting SPARQL query to rdflibjs query object
+    // Note: RDFLib.js docs are absolute fucking garbage, so look at the source code:
+    // https://linkeddata.github.io/rdflib.js/doc/sparql-to-query.js.html
+    var rdflib_query = $rdf.SPARQLToQuery(sparql_query, false, store);
+
+    // Running query
+    // `resCallback` is called with each result
+    // Third `false` argument is for stupid ass rdflib.js reasons
+    // `doneCallback` is called when the query is complete
+    // See: https://linkeddata.github.io/rdflib.js/doc/query.js.html
+    store.query(rdflib_query, resCallback, false, doneCallback);
 }
