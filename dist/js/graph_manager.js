@@ -54,11 +54,11 @@ function loadGraphData(graphHandler) {
 function downloadGraphData(dataHandler, dataHandlerArg) {
     $.get(rukmal_data_graph_url, function (data, status) {
         if (status === 'success') {
-            // Try to store data in session storage; update flags
-            try {
+            // Check if session storage is supported; store if it is; update flags
+            if (typeof(Storage) !== 'undefined') {
                 sessionStorage.rukmal_data_graph = data;
                 sessionStorage.rukmal_data_graph_last_updated = new Date().getTime();
-            } catch (err) {}
+            }
 
             // Handle data, pass thru data handler args too
             dataHandler(data, dataHandlerArg);
