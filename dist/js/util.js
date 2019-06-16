@@ -67,3 +67,26 @@ function compareDateDesc(a, b) {
     // Return (positive -> sorted first)
     return (d2.getTime() - d1.getTime());
 }
+
+
+/**
+ * Remapping function to be used to remap an array of output from the SPARQL
+ * queries, to having their IRIs as keys in a new object, as opposed to an array.
+ * 
+ * @param {Object} map Output map object.
+ * @param {Object} obj Input object to be mapped.
+ */
+function templateElemArrayRemap(map, obj) {
+    map[obj['?predicate'].value] = obj;
+    return map;
+}
+
+
+/**
+ * Function to build full Precis IRI labels, given a relationship name.
+ * 
+ * @param {string} rel Relationship name to be converted to full IRI.
+ */
+function relIRI(rel) {
+    return 'http://precis.rukmal.me/ontology#' + rel
+}
