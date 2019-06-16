@@ -1,4 +1,4 @@
-const abstract_len = 500;
+var abstract_len = 500;
 
 
 /**
