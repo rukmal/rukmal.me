@@ -6,10 +6,20 @@ body {
   /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to top, #1CB5E0, #000046);
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-repeat: no-repeat;
 }
 
 a {
   cursor: pointer;
+}
+
+.pageTitle {
+  font-size: 2em;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: bold;
+  height: 150px;
+  padding-top: 50px;
+  background: rgba(28, 126, 255, 0.8);
 }
 
 #pagefooter {
