@@ -3,6 +3,7 @@ $footer_font: 'IBM Plex Sans', sans-serif;
 $page_title_font: 'IBM Plex Sans', sans-serif;
 $sidebar_width: 232px; // From navbar-fixed-left.min.css
 $bootstrap_navbar_collapse_limit: 768px; // From bootstrap (default limit)
+$main_font_color: white;
 
 // NOTE: Background from https://uigradients.com/
 
@@ -32,12 +33,14 @@ a {
 
 .pageTitle {
     $top_padding: 150px;
-    font-size: 2em;
+    font-size: 4em;
     font-family: $page_title_font;
     font-weight: bold;
     height: $top_padding;
+    color: black;
     padding-top: ($top_padding / 2 - 25);
-    background: $main_background_color;
+    margin-bottom: 60px;
+    background-color: white;
 }
 
 #pagefooter {
@@ -47,6 +50,15 @@ a {
     padding-top: 5px;
     padding-bottom: 5px;
     text-align: center;
+}
+
+#particles-js canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
 }
 
 @media (min-width: $bootstrap_navbar_collapse_limit) {

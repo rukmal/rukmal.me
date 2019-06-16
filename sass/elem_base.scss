@@ -1,12 +1,55 @@
 $base_font: "IBM Plex Sans", sans-serif;
-$background_color: white;
+$main_text_color: white;
+$precis_elem_bottom_margin: 70px;
+$elem_picture_height: 300px;
+$elem_container_radius: 10px;
+$precis_element_box_opacity: 0.3;
 
 .elem_name {
-    font-family: $base_font;
-    // font-weight: bold;
-    font-size: 2em;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
-body {
-    background: $background_color;
+.elem_secondary {
+    font-size: 1.5em;
+}
+
+.elem_third {
+    font-size: 1.2em;
+}
+
+span.descr_emph {
+    // border-bottom: 2px dotted $main_text_color;
+    // See: https://stackoverflow.com/questions/6250394/how-to-increase-space-between-dotted-border-dots
+    // background-image: linear-gradient(to right, $main_text_color 33%, rgba(255,255,255,0) 0%);
+    // background-position: bottom;
+    // background-size: 15px 1px;
+    // background-repeat: repeat-x;
+}
+
+.precis_element {
+    margin-bottom: $precis_elem_bottom_margin;
+    background-color: rgba(0, 0, 0, $precis_element_box_opacity);
+    border-radius: $elem_container_radius;
+    padding-right: 0px;
+    filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.5));
+}
+
+.element_content_container {
+    padding-top: $elem_picture_height / 5;
+    color: $main_text_color;
+    font-family: $base_font;
+}
+
+.element_picture {
+    height: $elem_picture_height;
+    float: right;
+    border-radius: 0px $elem_container_radius $elem_container_radius 0px;
+    clip-path: polygon(25% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.element_picture_container {
+    filter: drop-shadow(-5px 0px 5px rgba(0, 0, 0, 0.5));
 }

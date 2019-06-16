@@ -1,12 +1,9 @@
 $base_font: "IBM Plex Sans", sans-serif;
-$background_color: white;
+$main_font_color: black;
 
-.elem_name {
+.deg_university {
     font-family: $base_font;
-    // font-weight: bold;
+    color: $main_font_color;
     font-size: 2em;
 }
 
-body {
-    background: $background_color;
-}
