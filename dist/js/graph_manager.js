@@ -100,7 +100,7 @@ function getOfType(store, type_name, resCallback, doneCallback) {
     var sparql_query = `
     PREFIX precis: <http://precis.rukmal.me/ontology#>
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    SELECT ?name ?date ?engl_name
+    SELECT ?name ?date
     WHERE {
         ?name rdf:type precis:${type_name} .
         ?name precis:hasDate ?date .
@@ -117,5 +117,34 @@ function getOfType(store, type_name, resCallback, doneCallback) {
     // Third `false` argument is for stupid ass rdflib.js reasons
     // `doneCallback` is called when the query is complete
     // See: https://linkeddata.github.io/rdflib.js/doc/query.js.html
+    store.query(rdflib_query, resCallback, false, doneCallback);
+}
+
+
+/**
+ * Function to get all properties of a given node. Also get names of the nested
+ * property (if it is also an object), and the externalResource of the nested node.
+ * 
+ * @param {Object} store RDFLib.js store.
+ * @param {String} individual_iri Target IRI.
+ * @param {Callback} resCallback Callback function called with each result.
+ * @param {Callback} doneCallback Callback function called when query is complete.
+ */
+function getAllProperties(store, individual_iri, resCallback, doneCallback) {
+    var sparql_query = `
+    PREFIX precis: <http://precis.rukmal.me/ontology#>
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    SELECT ?predicate ?obj ?obj_name ?obj_ext_res
+    WHERE {
+        <${individual_iri}> ?predicate ?obj .
+        OPTIONAL { ?obj precis:hasName ?obj_name . }
+        OPTIONAL { ?obj precis:externalResource ?obj_ext_res . }
+    }
+    `;
+
+    // Converting to rdflibjs query object
+    var rdflib_query = $rdf.SPARQLToQuery(sparql_query, false, store);
+
+    // Running query
     store.query(rdflib_query, resCallback, false, doneCallback);
 }
