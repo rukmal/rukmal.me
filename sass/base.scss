@@ -1,11 +1,14 @@
 $main_background_color: rgba(28, 126, 255, 0.8);
 $footer_font: 'IBM Plex Sans', sans-serif;
+$page_title_font: 'IBM Plex Sans', sans-serif;
 $sidebar_width: 232px; // From navbar-fixed-left.min.css
 $bootstrap_navbar_collapse_limit: 768px; // From bootstrap (default limit)
 
+// NOTE: Background from https://uigradients.com/
+
 body {
     min-height: 100%;
-    
+
     // Dark Ocean Gradient
     // background: #373B44;  /* fallback for old browsers */
     // background: -webkit-linear-gradient(to top, #4286f4, #373B44);  /* Chrome 10-25, Safari 5.1-6 */
@@ -20,10 +23,21 @@ body {
     background: #000046;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to top, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to top, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-repeat: no-repeat;
 }
 
 a {
     cursor: pointer;
+}
+
+.pageTitle {
+    $top_padding: 150px;
+    font-size: 2em;
+    font-family: $page_title_font;
+    font-weight: bold;
+    height: $top_padding;
+    padding-top: ($top_padding / 2 - 25);
+    background: $main_background_color;
 }
 
 #pagefooter {

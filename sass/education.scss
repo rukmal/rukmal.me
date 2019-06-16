@@ -1,0 +1,12 @@
+$base_font: "IBM Plex Sans", sans-serif;
+$background_color: white;
+
+.elem_name {
+    font-family: $base_font;
+    // font-weight: bold;
+    font-size: 2em;
+}
+
+body {
+    background: $background_color;
+}
