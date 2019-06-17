@@ -1,9 +1,12 @@
 $base_font: "IBM Plex Sans", sans-serif;
-$main_font_color: black;
+$main_text_color: white;
 
 .deg_university {
     font-family: $base_font;
-    color: $main_font_color;
+    color: $main_text_color;
     font-size: 2em;
 }
 
+.degree_concentration_name {
+    border-bottom: 1px dotted $main_text_color;
+}

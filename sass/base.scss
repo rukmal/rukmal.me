@@ -37,10 +37,10 @@ a {
     font-family: $page_title_font;
     font-weight: bold;
     height: $top_padding;
-    color: black;
-    padding-top: ($top_padding / 2 - 25);
+    color: white;
+    padding-top: ($top_padding / 2 - 50);
     margin-bottom: 60px;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 #pagefooter {
