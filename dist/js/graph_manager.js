@@ -134,11 +134,12 @@ function getAllProperties(store, individual_iri, resCallback, doneCallback) {
     var sparql_query = `
     PREFIX precis: <http://precis.rukmal.me/ontology#>
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    SELECT ?predicate ?obj ?obj_name ?obj_ext_res
+    SELECT ?predicate ?obj ?obj_name ?obj_ext_res ?obj_website
     WHERE {
         <${individual_iri}> ?predicate ?obj .
         OPTIONAL { ?obj precis:hasName ?obj_name . }
         OPTIONAL { ?obj precis:externalResource ?obj_ext_res . }
+        OPTIONAL { ?obj precis:hasWebsite ?obj_website . }
     }
     `;
 

@@ -1,15 +1,26 @@
 /**
  * Function to build a external resource enabled <span> tag to the layout.
+ * This also intelligently creates links (if websites are available).
  * 
  * @param {Object} elem Layout element.
  * @param {String} iri IRI of the target property.
  */
 function buildOptionalExtResElem(elem, iri) {
+    var result = ''
+
+    // Check if external resource exists
     if (elem[relIRI(iri)]['?obj_ext_res']) {
-        return `<span class="descr_emph" rel="popover" data-dbpedia="${elem[relIRI(iri)]['?obj_ext_res'].value}">${elem[relIRI(iri)]['?obj_name'].value}</span>`
+        result = `<span class="descr_emph" rel="popover" data-dbpedia="${elem[relIRI(iri)]['?obj_ext_res'].value}">${elem[relIRI(iri)]['?obj_name'].value}</span>`
     } else {
-        return elem[relIRI(iri)]['?obj_name'].value
+        result = elem[relIRI(iri)]['?obj_name'].value
     }
+
+    // Check if website exists
+    if (elem[relIRI(iri)]['?obj_website']) {
+        result = `<a class="entity_link" href="${elem[relIRI(iri)]['?obj_website'].value}">` + result + '</a>'
+    }
+
+    return result
 }
 
 /**
