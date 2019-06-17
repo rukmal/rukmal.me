@@ -59,10 +59,12 @@ function layoutEducation(elem, elem_id) {
             <div class="elem_secondary">
                 ${buildOptionalExtResElem(elem, 'degreeUniversity')} (${new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear()})
             </div>
+            <div class="elem_name">
+                ${elem[relIRI('hasName')]['?obj'].value}
+            </div>
             <div class="elem_third">
             ${buildOptionalExtResElem(elem, 'degreeSchool')}
             </div>
-            <div class="elem_name">${elem[relIRI('hasName')]['?obj'].value}</div>
             <div class="elem_fourth">
                 ${buildOptionalExtResElem(elem, 'degreeDepartment')}
             </div>
