@@ -18,10 +18,10 @@ a {
   font-family: "IBM Plex Sans", sans-serif;
   font-weight: bold;
   height: 150px;
-  color: black;
-  padding-top: 50px;
+  color: white;
+  padding-top: 25px;
   margin-bottom: 60px;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 #pagefooter {

@@ -1,7 +1,11 @@
 .deg_university {
   font-family: "IBM Plex Sans", sans-serif;
-  color: black;
+  color: white;
   font-size: 2em;
+}
+
+.degree_concentration_name {
+  border-bottom: 1px dotted white;
 }
 
 /*# sourceMappingURL=education.css.map */
