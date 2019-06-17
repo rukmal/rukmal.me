@@ -37,6 +37,10 @@ span.descr_emph {
     filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.5));
 }
 
+.entity_link {
+    color: $main_text_color;
+}
+
 .element_content_container {
     padding-top: $elem_picture_height / 6;
     color: $main_text_color;
