@@ -32,7 +32,10 @@ function buildOptionalExtResElem(elem, iri) {
  */
 function populateFromDBPedia(dbpedia_resource, field, container_id) {
     function result_handler(result) {
-        $(container_id).text(result[field].value);
+        // Formatted text with URL embedded
+        var formatted_html = `<a href="${result.wikipedia_res.value}" class="entity_link">${result[field].value}</a>`
+        // Setting to container
+        $(container_id).html(formatted_html);
     }
 
     getDBpediaData(dbpedia_resource, result_handler);
@@ -138,8 +141,14 @@ function layoutWork(elem, elem_id) {
             <div class="elem_secondary">
                 ${buildOptionalExtResElem(elem, 'employedAt')}
             </div>
+            ${elem[relIRI('externalResource')] ? elem[relIRI('externalResource')]['?obj'].value : ''}
+            <div class="elem_name">
+                ${elem[relIRI('hasName')]['?obj'].value}
+            </div>
 
-            <div class="elem_name">${elem[relIRI('hasName')]['?obj'].value}</div>
+            <div class="elem_third">
+                ${elem[relIRI('employedAt')]['?obj_parent'] ? elem[relIRI('employedAt')]['?obj_parent'].value : ''}
+            </div>
         </div>
         <div class="col-sm-4 element_picture_container">
             <img class="element_picture" src="${elem[relIRI('hasImage')]['?obj'].value}">
