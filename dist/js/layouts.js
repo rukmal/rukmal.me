@@ -55,7 +55,7 @@ function layoutEducation(elem, elem_id) {
     var item = `
     <div class="precis_element container">
     <div id=${elem_id} class="row">
-        <div class="col-sm-8 element_content_container">
+        <div class="col-sm-8 col-md element_content_container">
             <div class="elem_secondary">
                 ${buildOptionalExtResElem(elem, 'degreeUniversity')} (${new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear()})
             </div>
