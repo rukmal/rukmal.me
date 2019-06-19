@@ -57,7 +57,7 @@ function layoutEducation(elem, elem_id) {
     <div id=${elem_id} class="row">
         <div class="col-sm-8 col-md element_content_container">
             <div class="elem_secondary">
-                ${buildOptionalExtResElem(elem, 'degreeUniversity')} (${new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear()})
+                ${buildOptionalExtResElem(elem, 'degreeUniversity')}
             </div>
             <div class="elem_name">
                 ${elem[relIRI('hasName')]['?obj'].value}
@@ -66,7 +66,7 @@ function layoutEducation(elem, elem_id) {
             ${buildOptionalExtResElem(elem, 'degreeSchool')}
             </div>
             <div class="elem_fourth">
-                ${buildOptionalExtResElem(elem, 'degreeDepartment')}
+                ${elem[relIRI('inCity')]['?obj'].value}, ${(elem[relIRI('inState')]) ? elem[relIRI('inState')]['?obj'].value : elem[relIRI('inCountry')]['?obj'].value} (${new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear()})
             </div>
             <div class="degree_concentration">
                 Concentration: <span class="descr_emph degree_concentration_name" rel="popover" data-dbpedia="${elem[relIRI('degreeConcentration')]['?obj'].value}" id="${'concentration' + rand_id}"></span>
