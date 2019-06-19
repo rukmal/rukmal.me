@@ -149,3 +149,68 @@ function getAllProperties(store, individual_iri, resCallback, doneCallback) {
     // Running query
     store.query(rdflib_query, resCallback, false, doneCallback);
 }
+
+
+/**
+ * Function to get all properties of a given WorkExperience. Also resolves secondary
+ * and tertiary "parentOrganization"s for the "employedAt" organization.
+ * 
+ * Note that the reason for the absolutely ridiculous amount of "OPTIONAL" statements
+ * is because rdflib.js is awful and doesn't allow for nested if statements.
+ * 
+ * @param {Object} store RDFLib.js store.
+ * @param {String} individual_iri Target IRI.
+ * @param {Callback} resCallback Callback function called with each result.
+ * @param {Callback} doneCallback Callback function called when query is complete.
+ */
+function getAllWorkExperience(store, individual_iri, resCallback, doneCallback) {
+    var sparql_query = `
+    PREFIX precis: <http://precis.rukmal.me/ontology#>
+    PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    SELECT DISTINCT ?description_text ?priority ?desc ?predicate ?obj ?obj_website ?obj_name ?parentOrgName ?parentOrgResource ?parentOrgWebsite ?superParentOrgName ?superParentOrgWebsite ?superParentOrgResource
+    WHERE {
+        <${individual_iri}> ?predicate ?obj .
+        OPTIONAL { ?obj precis:hasName ?obj_name . }
+        OPTIONAL { ?obj precis:hasWebsite ?obj_website . }
+        OPTIONAL {
+            <${individual_iri}> precis:hasDescription ?desc .
+            ?desc precis:hasPriority ?priority .
+            ?desc precis:hasText ?description_text .
+        }
+        OPTIONAL {
+            <${individual_iri}> precis:employedAt ?org .
+            ?org precis:hasParentOrganization ?parentOrg .
+            ?parentOrg precis:hasName ?parentOrgName .
+            ?parentOrg precis:hasWebsite ?parentOrgWebsite .
+        }
+        OPTIONAL {
+            <${individual_iri}> precis:employedAt ?org .
+            ?org precis:hasParentOrganization ?parentOrg .
+            ?parentOrg precis:hasName ?parentOrgName .
+            ?parentOrg precis:hasWebsite ?parentOrgWebsite .
+            ?parentOrg precis:externalResource ?parentOrgResource .
+        }
+        OPTIONAL {
+            <${individual_iri}> precis:employedAt ?org .
+            ?org precis:hasParentOrganization ?parentOrg .
+            ?parentOrg precis:hasParentOrganization ?superParentOrg .
+            ?superParentOrg precis:hasName ?superParentOrgName .
+            ?superParentOrg precis:hasWebsite ?superParentOrgWebsite .
+            ?superParentOrg precis:externalResource ?superParentOrgResource .
+        }
+        OPTIONAL {
+            <${individual_iri}> precis:employedAt ?org .
+            ?org precis:hasParentOrganization ?parentOrg .
+            ?parentOrg precis:hasParentOrganization ?superParentOrg .
+            ?superParentOrg precis:hasName ?superParentOrgName .
+            ?superParentOrg precis:hasWebsite ?superParentOrgWebsite .
+        }
+    }
+    `;
+
+    // Converting to rdflibjs query object
+    var rdflib_query = $rdf.SPARQLToQuery(sparql_query, false, store);
+
+    // Running query
+    store.query(rdflib_query, resCallback, false, doneCallback);
+}
