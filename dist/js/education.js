@@ -39,8 +39,6 @@ function educationDataHandler(store) {
                 // Add to page
                 $('.entities').append(item_html)
 
-                console.log(item_html);
-
                 // Append counter
                 counter++;
 
