@@ -37,7 +37,7 @@
   overflow: hidden;
   float: right;
   border-radius: 0px 10px 10px 0px;
-  clip-path: polygon(10% 0, 100% 0, 100% 100%, 0% 100%);
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
 }
 
 .element_picture_container {
