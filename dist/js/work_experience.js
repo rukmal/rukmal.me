@@ -26,20 +26,97 @@ function workDataHandler(store) {
             // Variable to store element output
             var elem_output = [];
 
-            getAllProperties(store, arr_elem['?name'].value, function (out) {
+            getAllWorkExperience(store, arr_elem['?name'].value, function (out) {
                 // Appending to element output array
                 elem_output.push(out);
             }, function onElemDone() {
+                // Template data object
+                var template_data = {};
+
+                // Variables to store unique elements
+                var descriptions = [];
+                var parent_orgs = [];
+                var super_parent_orgs = [];
+
+                // Store for seen descriptions
+                var seen_descriptions = new Set();
+
+                // Store for seen parent organizations
+                var seen_parent_orgs = new Set(); 
+
+                // Store for seen super parent organizations
+                var seen_super_orgs = new Set();
+
+                // Iterating over all output to extract multiples fields
+                // This must be done like this because rdflib.js is trash,
+                // and DOES NOT respect SPARQL queries correctly
+                for (var idx in elem_output) {
+                    var elem = elem_output[idx];
+                    
+                    // Isolating descriptions
+                    if (elem['?predicate'].value === relIRI('hasDescription')) {
+                        // Checking if it is already in the set
+                        if (!seen_descriptions.has(elem['?desc'].value)) {
+                            // Adding to set if not seen
+                            seen_descriptions.add(elem['?desc'].value);
+                            // Adding element to descriptions array
+                            descriptions.push(elem);
+                        }
+                    }
+                    
+                    // Isolating parent organizations
+                    if (elem['?parentOrgName']) {
+                        // Checking if it is already in the set
+                        if (!seen_parent_orgs.has(elem['?parentOrgName'].value)) {
+                            // Adding to set if not seen
+                            seen_parent_orgs.add(elem['?parentOrgName'].value);
+                            // Adding element to the parent organizations array
+                            parent_orgs.push(elem);
+                        }
+                    }
+
+                    // Isolating super parent organizations
+                    if (elem['?superParentOrgName']) {
+                        // Checking if it is already in the set
+                        if (!seen_super_orgs.has(elem['?superParentOrgName'].value)) {
+                            // Adding to set if not seen
+                            seen_super_orgs.add(elem['?superParentOrgName'].value);
+                            // Adding element to the parent organizations array
+                            super_parent_orgs.push(elem);
+                        }
+                    }
+
+                    if (elem['?predicate'].value === relIRI('employedAt')) {
+                        // console.log(elem);
+                    }
+                }
+
+                descriptions.sort(function(a, b) {
+                    return a['?priority'].value - b['?priority'].value;
+                });
+
+                // Adding sorted descriptions to template data (just the text)
+                // See: https://stackoverflow.com/questions/19590865/from-an-array-of-objects-extract-value-of-a-property-as-array
+                template_data['description'] = descriptions.map(
+                    a => a['?description_text'].value
+                );
+
+                // 
+                template_data['parent_orgs'] = parent_orgs;
+                template_data['super_parent_orgs'] = super_parent_orgs;
+
                 // Remapping output array
                 var template_elem = elem_output.reduce(templateElemArrayRemap, {});
-                console.log(template_elem);
+
+                // Combining remapped output array and the specially identified
+                // items above
+                var full_template_data = {...template_elem, ...template_data};
+
                 // Build item HTML with layout engine
-                var item_html = layoutWork(template_elem, arr_elem['?name'].value);
+                var item_html = layoutWork(full_template_data, arr_elem['?name'].value);
 
                 // Add to page
                 $('.entities').append(item_html)
-
-                console.log(item_html);
 
                 // Append counter
                 counter++;
@@ -57,33 +134,12 @@ function workDataHandler(store) {
             });
         }
 
-        loopArray(output[counter])
-
-        // // Iterating through now sorted output
-        // for (idx in output) {
-        //     item = output[idx]
-        //     print(idx)
-        //     getAllProperties(store, item['?name'].value, function (out) {
-        //         console.log(item['?name'].value, out);
-        //     }, function (out) {
-        //         console.log(out);
-        //     });
-        // }
-
-        // TODO Now:
-        // Write another sparql query to get all this shit out of the graph, one by one
-        // (i.e. get it for each of the shits in output, in order)
-
-        // Explore adding shit shite directly to the original query; will improve speed
-
-        // An alternative to dealing with Javascript's asnyc clusterfuck would be to put
-        // both of these functions inside the education data handler; then you will have
-        // access to `store`, and can just write your queries directly in there
+        loopArray(output[counter]);
     }
 
-        // This is working now! Just need to start doing stuff
-        
-        getOfType(store, 'WorkExperience', storeResults, onDone);
-    }
+    // Getting all WorkExperience instances (for sorting)
+    getOfType(store, 'WorkExperience', storeResults, onDone);
+}
 
+// Starting page load with graph data handler
 loadGraphData(workDataHandler);
