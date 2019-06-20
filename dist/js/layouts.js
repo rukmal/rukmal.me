@@ -43,6 +43,50 @@ function populateFromDBPedia(dbpedia_resource, field, container_id) {
 
 
 /**
+ * Function to build HTML for an organization, given its type. That is, either
+ * 'parentOrg' or 'superParentOrg'. This is a workaround to help separate
+ * individual organization types; rdflib.js does not work with nested SPARQL
+ * queries for some reason (it is shit).
+ * 
+ * @param {Object} org_elems Target object.
+ * @param {Object} type Type of the organization.
+ * 
+ * @return {String} HTML ready for layout with organization information. Note that
+ *                  multiple organizations are separated with a comma and space.
+ */
+function buildOrganizationHTML(org_elems, type) {
+    
+    // Variable to store complete HTML
+    var org_html_full = [];
+
+    // Iterating through organizations
+    for (idx in org_elems) {
+        // Variable to store final organization HTML
+        var org_html = '';
+        
+        // Isolating individual organization
+        var org = org_elems[idx];
+
+        // Dynamically assigning HTML depending on external resource existence
+        if (org['?' + type + 'Resource']) {
+            org_html += `<span class="descr_emph" rel="popover" data-dbpedia="${org['?' + type + 'Resource'].value}">${org['?' + type + 'Name'].value}</span>`;
+        } else {
+            org_html += org['?' + type + 'Name'].value;
+        }
+
+        // Checking if website exists for the given org
+        if (org['?' + type + 'Website']) {
+            org_html = `<a class="entity_link" href="${org['?' + type + 'Website'].value}">` + org_html + '</a>';
+        }
+
+        // Appending to array
+        org_html_full.push(org_html);
+    }
+
+    return org_html_full.join(', ');
+}
+
+/**
  * Function to build the layout for an 'Education' item.
  * 
  * @param {Object} elem Layout object.
@@ -66,10 +110,10 @@ function layoutEducation(elem, elem_id) {
             ${buildOptionalExtResElem(elem, 'degreeSchool')}
             </div>
             <div class="elem_fourth">
-                ${elem[relIRI('inCity')]['?obj'].value}, ${(elem[relIRI('inState')]) ? elem[relIRI('inState')]['?obj'].value : elem[relIRI('inCountry')]['?obj'].value} (${new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear()})
-            </div>
-            <div class="degree_concentration">
                 Concentration: <span class="descr_emph degree_concentration_name" rel="popover" data-dbpedia="${elem[relIRI('degreeConcentration')]['?obj'].value}" id="${'concentration' + rand_id}"></span>
+            </div>
+            <div class="elem_fourth">
+                ${elem[relIRI('inCity')]['?obj'].value}, ${(elem[relIRI('inState')]) ? elem[relIRI('inState')]['?obj'].value : elem[relIRI('inCountry')]['?obj'].value} (${new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear()})
             </div>
             <br>
             <button type="button" class="more_info_btn btn-secondary" data-toggle="modal" data-target="${'#modal' + rand_id}">
@@ -136,6 +180,31 @@ function layoutEducation(elem, elem_id) {
  * @param {String} elem_id ID of the element.
  */
 function layoutWork(elem, elem_id) {
+    // Random number for element IDs
+    var rand_id = Math.ceil(Math.random() * 1000);
+
+    // Organization HTML
+    var org_html = '';
+
+    // Building organization html
+    var super_parent_html = buildOrganizationHTML(elem['super_parent_orgs'],
+                                                   'superParentOrg');
+    var parent_html = buildOrganizationHTML(elem['parent_orgs'],
+                                            'parentOrg');
+
+    // Building organization website stuff
+    if (elem['super_parent_orgs'].length > 0) {
+        org_html = super_parent_html;
+    } else if (elem['parent_orgs'].length > 0) {
+        org_html = parent_html;
+    }
+
+    // End date intelligent construction (may not exist if to present)
+    var end_date = 'Present';
+    if (elem[relIRI('endDate')]) {
+        end_date = date_months[new Date(elem[relIRI('endDate')]['?obj'].value).getMonth()] + ' ' + new Date(elem[relIRI('endDate')]['?obj'].value).getFullYear()
+    }
+
     var item = `
     <div class="precis_element container">
     <div id=${elem_id} class="row">
@@ -143,20 +212,59 @@ function layoutWork(elem, elem_id) {
             <div class="elem_secondary">
                 ${buildOptionalExtResElem(elem, 'employedAt')}
             </div>
-            ${elem[relIRI('externalResource')] ? elem[relIRI('externalResource')]['?obj'].value : ''}
             <div class="elem_name">
                 ${elem[relIRI('hasName')]['?obj'].value}
             </div>
-
             <div class="elem_third">
-                ${elem[relIRI('employedAt')]['?obj_parent'] ? elem[relIRI('employedAt')]['?obj_parent'].value : ''}
+                ${org_html}
             </div>
+            <div class="elem_fourth">
+                ${date_months[new Date(elem[relIRI('hasDate')]['?obj'].value).getMonth()]} ${new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear()} - ${end_date}
+            </div>
+            <div class="elem_fourth">
+                ${elem[relIRI('inCity')]['?obj'].value}, ${(elem[relIRI('inState')]) ? elem[relIRI('inState')]['?obj'].value : elem[relIRI('inCountry')]['?obj'].value}
+            </div>
+            <br>
+            <button type="button" class="more_info_btn btn-secondary" data-toggle="modal" data-target="${'#modal' + rand_id}">
+                More Information
+            </button>
         </div>
         <div class="col-sm-4 element_picture_container">
             <img class="element_picture" src="${elem[relIRI('hasImage')]['?obj'].value}">
         </div>
     </div>
     </div>
+
+    <div class="modal fade" id="${'modal' + rand_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exmpleModalLabel">More Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <b>${elem[relIRI('hasName')]['?obj'].value}</b>
+                <br>
+                <br>
+                ${buildOptionalExtResElem(elem, 'employedAt')}
+                <br>
+                ${parent_html}
+                <br>
+                ${super_parent_html}
+                <br>
+                <br>
+                <i>Location</i>: ${elem[relIRI('inCity')]['?obj'].value}, ${(elem[relIRI('inState')]) ? elem[relIRI('inState')]['?obj'].value : elem[relIRI('inCountry')]['?obj'].value}
+                <br>
+                <i>Tenure</i>: ${date_months[new Date(elem[relIRI('hasDate')]['?obj'].value).getMonth()]} ${new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear()} - ${end_date}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
     `
 
     return item;
