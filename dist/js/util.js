@@ -90,3 +90,8 @@ function templateElemArrayRemap(map, obj) {
 function relIRI(rel) {
     return 'http://precis.rukmal.me/ontology#' + rel
 }
+
+
+// Variable to store months (for lookup with date function)
+date_months = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
+               'August', 'September', 'October', 'November', 'December'];

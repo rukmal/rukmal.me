@@ -37,7 +37,7 @@ function educationDataHandler(store) {
                 var item_html = layoutEducation(template_elem, arr_elem['?name'].value);
 
                 // Add to page
-                $('.entities').append(item_html)
+                $('.entities').append(item_html);
 
                 // Append counter
                 counter++;
