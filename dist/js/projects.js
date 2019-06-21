@@ -26,7 +26,7 @@ function projectDataHandler(store) {
             // Variable to store element output
             var elem_output = [];
 
-            getAllWorkExperience(store, arr_elem['?name'].value, function (out) {
+            getAllProjects(store, arr_elem['?name'].value, function (out) {
                 // Appending to element output array
                 elem_output.push(out);
             }, function onElemDone() {
@@ -35,21 +35,17 @@ function projectDataHandler(store) {
 
                 // Variables to store unique elements
                 var descriptions = [];
-                var parent_orgs = [];
-                var super_parent_orgs = [];
                 var media_url = [];
+                var skills = [];
+                var activity = [];
+                var award = [];
 
-                // Store for seen descriptions
+                // Store for seen stuff
                 var seen_descriptions = new Set();
-
-                // Store for seen parent organizations
-                var seen_parent_orgs = new Set(); 
-
-                // Store for seen super parent organizations
-                var seen_super_orgs = new Set();
-
-                // Store for seen media items
                 var seen_media = new Set();
+                var seen_skills = new Set();
+                var seen_activity = new Set();
+                var seen_award = new Set();
 
                 // Iterating over all output to extract multiples fields
                 // This must be done like this because rdflib.js is trash,
@@ -67,37 +63,48 @@ function projectDataHandler(store) {
                             descriptions.push(elem);
                         }
                     }
-                    
-                    // Isolating parent organizations
-                    if (elem['?parentOrgName']) {
-                        // Checking if it is already in the set
-                        if (!seen_parent_orgs.has(elem['?parentOrgName'].value)) {
-                            // Adding to set if not seen
-                            seen_parent_orgs.add(elem['?parentOrgName'].value);
-                            // Adding element to the parent organizations array
-                            parent_orgs.push(elem);
-                        }
-                    }
-
-                    // Isolating super parent organizations
-                    if (elem['?superParentOrgName']) {
-                        // Checking if it is already in the set
-                        if (!seen_super_orgs.has(elem['?superParentOrgName'].value)) {
-                            // Adding to set if not seen
-                            seen_super_orgs.add(elem['?superParentOrgName'].value);
-                            // Adding element to the parent organizations array
-                            super_parent_orgs.push(elem);
-                        }
-                    }
 
                     // Isolating media URLs
-                    if (elem['?predicate'].value ===  relIRI('hasMedia')) {
+                    if (elem['?predicate'].value === relIRI('hasMedia')) {
                         // Checking if it already in the set
                         if (!seen_media.has(elem['?obj'].value)) {
                             // Adding to set if not see
                             seen_media.add(elem['?obj'].value);
                             // Adding element to the media array
                             media_url.push(elem['?obj'].value);
+                        }
+                    }
+
+                    // Isolating skills
+                    if (elem['?sk_name']) {
+                        // Checking if it already in the set
+                        if (!seen_skills.has(elem['?sk_name'].value)) {
+                            // Adding to set if not see
+                            seen_skills.add(elem['?sk_name'].value);
+                            // Adding element to the media array
+                            skills.push(elem);
+                        }
+                    }
+
+                    // Isolating related activities
+                    if (elem['?ac_name']) {
+                        // Checking if it already in the set
+                        if (!seen_activity.has(elem['?ac_name'].value)) {
+                            // Adding to set if not see
+                            seen_activity.add(elem['?ac_name'].value);
+                            // Adding element to the media array
+                            activity.push(elem['?ac_name'].value);
+                        }
+                    }
+
+                    // Isolating related activities
+                    if (elem['?award_name']) {
+                        // Checking if it already in the set
+                        if (!seen_award.has(elem['?award_name'].value)) {
+                            // Adding to set if not see
+                            seen_award.add(elem['?award_name'].value);
+                            // Adding element to the media array
+                            award.push(elem['?award_name'].value);
                         }
                     }
                 }
@@ -112,12 +119,11 @@ function projectDataHandler(store) {
                     a => a['?description_text'].value
                 );
 
-                // Adding organizations
-                template_data['parent_orgs'] = parent_orgs;
-                template_data['super_parent_orgs'] = super_parent_orgs;
-
-                // Adding media
+                // Adding data to template object
                 template_data['media_url'] = media_url;
+                template_data['skills'] = skills;
+                template_data['awards'] = award;
+                template_data['activity'] = activity;
 
                 // Remapping output array
                 var template_elem = elem_output.reduce(templateElemArrayRemap, {});
@@ -127,7 +133,7 @@ function projectDataHandler(store) {
                 var full_template_data = {...template_elem, ...template_data};
 
                 // Build item HTML with layout engine
-                var item_html = layoutWork(full_template_data, arr_elem['?name'].value);
+                var item_html = layoutProject(full_template_data, arr_elem['?name'].value);
 
                 // Add to page
                 $('.entities').append(item_html)
