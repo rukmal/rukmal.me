@@ -293,3 +293,119 @@ function layoutWork(elem, elem_id) {
     return item;
 
 }
+
+
+/**
+ * Function to build the layout for a 'Project' item.
+ * 
+ * @param {Object} elem Layout object.
+ * @param {String} elem_id ID of the element.
+ */
+function layoutProject(elem, elem_id) {
+    // Random number for element IDs
+    var rand_id = Math.ceil(Math.random() * 1000);
+
+    // Isolating image URL (if any)
+    var image_url = (elem[relIRI('hasImage')] ? elem[relIRI('hasImage')]['?obj'].value : '');
+
+    // Creating name HTML
+    var proj_website = (elem[relIRI('hasWebsite')] ? elem[relIRI('hasWebsite')]['?obj'].value : '');
+
+    // Building skills HTML
+    var skills_html = '';
+    if (elem['skills'].length > 0) {
+        var individual_skill = [];
+        skills_html += '<br><i>Skills</i>: '
+        for (idx in elem['skills']) {
+            individual_skill.push(`<span class="descr_emph" rel="popover" data-dbpedia="${elem['skills'][idx]['?sk_resource'].value}">${elem['skills'][idx]['?sk_name'].value}</span>`);
+        }
+        skills_html += individual_skill.join(', ');
+    }
+
+    // Building collaborators HTML
+    var collaborators_html = '';
+    if (elem[relIRI('hasCollaborators')]) {
+        collaborators_html += '<br><i>Collaborators</i>: ' + elem[relIRI('hasCollaborators')]['?obj'].value;
+    }
+
+    // Building activities HTML
+    var activities_html = '';
+    if (elem['activity'].length > 0) {
+        activities_html += '<br><i>Related Activities</i>: ' + elem['activity'].join(', ');
+    }
+
+    // Building awards HTML
+    var awards_html = '';
+    if (elem['awards'].length > 0) {
+        awards_html += '<br><i>Awards</i>: ' + elem['awards'].join(', ');
+    }
+
+
+    // Media URLs
+    var media_html = '';
+    // Only appending list and title if not empty
+    if (elem['media_url'].length > 0) {
+        media_html = '<br><b><i>Other Media</i></b><ul>';
+        for (var idx in elem['media_url']) {
+            media_html += '<li><a href="' + elem['media_url'][idx] + '">' + elem['media_url'][idx] + '</a></li>';
+        }
+        media_html += '</ul>';
+    }
+
+    var item = `
+    <div class="precis_element container">
+    <div id=${elem_id} class="row">
+        <div class="col-sm-8 element_content_container">
+            <div class="elem_fourth">
+                ${date_months[new Date(elem[relIRI('hasDate')]['?obj'].value).getMonth()]} ${new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear()}
+            </div>
+            <div class="elem_name">
+                <a class="entity_link" href="${proj_website}">${elem[relIRI('hasName')]['?obj'].value}</a>
+            </div>
+            <div class="elem_fourth">
+                ${elem['description']}
+            </div>
+            <br>
+            <button type="button" class="more_info_btn btn-secondary" data-toggle="modal" data-target="${'#modal' + rand_id}">
+                More Information
+            </button>
+        </div>
+        <div class="col-sm-4 element_picture_container">
+        <img class="project_image" src="${image_url}">
+        </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="${'modal' + rand_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exmpleModalLabel">${elem[relIRI('hasName')]['?obj'].value}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ${elem['description']}
+                <br>
+                <br>
+                <i>Project Website</i>: <a href="${proj_website}">${proj_website}</a>
+                <br>
+                ${collaborators_html}
+                ${skills_html}
+                <br>
+                ${activities_html}
+                ${awards_html}
+                <br>
+                ${media_html}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    `
+
+    return item;
+}
