@@ -1,0 +1,34 @@
+$full_name_font: "IBM Plex Sans", sans-serif;
+$full_name_color: rgb(255, 255, 255);
+$main_content_border_box_pad: 10px;
+$main_content_box_opacity: 0;
+$main_img_dim: 300px;
+
+#main_landing_img {
+    height: $main_img_dim;
+    width: $main_img_dim;
+    border: 5px solid $full_name_color;
+}
+
+#full_name {
+    color: $full_name_color;
+    font-family: $full_name_font;
+    // font-weight: bold;
+    font-size: 3em;
+}
+
+.main_description {
+    color: $full_name_color;
+    font-family: $full_name_font;
+    font-size: 1em;
+}
+
+.descr_emph {
+    font-weight: bold;
+}
+
+#main_content_box {
+    background-color: rgba(0, 0, 0, $main_content_box_opacity);
+    padding-top: $main_content_border_box_pad;
+    padding-bottom: $main_content_border_box_pad;
+}

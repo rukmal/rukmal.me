@@ -1,0 +1,11 @@
+$elem_picture_height: 300px;
+$elem_container_radius: 10px;
+
+.project_image {
+    height: $elem_picture_height;
+    max-width: $elem_picture_height + 50;
+    width: auto;
+    overflow: hidden;
+    float: right;
+    border-radius: 0px $elem_container_radius $elem_container_radius 0px;
+}

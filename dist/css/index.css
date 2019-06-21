@@ -1,0 +1,29 @@
+#main_landing_img {
+  height: 300px;
+  width: 300px;
+  border: 5px solid white;
+}
+
+#full_name {
+  color: white;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 3em;
+}
+
+.main_description {
+  color: white;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: 1em;
+}
+
+.descr_emph {
+  font-weight: bold;
+}
+
+#main_content_box {
+  background-color: rgba(0, 0, 0, 0);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+/*# sourceMappingURL=index.css.map */
