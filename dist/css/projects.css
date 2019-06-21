@@ -1,0 +1,10 @@
+.project_image {
+  height: 300px;
+  max-width: 350px;
+  width: auto;
+  overflow: hidden;
+  float: right;
+  border-radius: 0px 10px 10px 0px;
+}
+
+/*# sourceMappingURL=projects.css.map */
