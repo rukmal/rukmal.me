@@ -44,4 +44,8 @@
   filter: drop-shadow(-5px 0px 5px rgba(0, 0, 0, 0.5));
 }
 
+.modal-body {
+  word-wrap: break-word;
+}
+
 /*# sourceMappingURL=elem_base.css.map */
