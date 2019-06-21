@@ -214,3 +214,53 @@ function getAllWorkExperience(store, individual_iri, resCallback, doneCallback) 
     // Running query
     store.query(rdflib_query, resCallback, false, doneCallback);
 }
+
+
+/**
+ * Function to get all properties of a given Project. Also resolves relatedTo
+ * Activities and Skills.
+ * 
+ * The multiple "OPTIONAL" clauses is because rdflib.js is shit.
+ * 
+ * @param {Object} store RDFLib.js store.
+ * @param {String} individual_iri Target IRI.
+ * @param {Callback} resCallback Callback function called with each result.
+ * @param {Callback} doneCallback Callback function called when query is complete.
+ */
+function getAllProjects(store, individual_iri, resCallback, doneCallback) {
+    var sparql_query = `
+        PREFIX precis: <http://precis.rukmal.me/ontology#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        SELECT ?description_text ?predicate ?obj ?sk_name ?sk_resource ?ac_name ?award_name
+        WHERE {
+            <${individual_iri}> ?predicate ?obj .
+            OPTIONAL {
+                <${individual_iri}> precis:hasDescription ?desc .
+                ?desc precis:hasText ?description_text .
+            }
+            OPTIONAL {
+                <${individual_iri}> precis:relatedTo ?relatedItem .
+                ?relatedItem rdf:type precis:Skill .
+                ?relatedItem precis:hasName ?sk_name .
+                ?relatedItem precis:externalResource ?sk_resource .
+            }
+            OPTIONAL {
+                <${individual_iri}> precis:relatedTo ?relatedItem .
+                ?relatedItem rdf:type precis:Activity .
+                ?relatedItem precis:hasName ?ac_name .
+            }
+            OPTIONAL {
+                <${individual_iri}> precis:relatedTo ?relatedItem .
+                ?relatedItem rdf:type precis:Activity .
+                ?award precis:affiliatedWith ?relatedItem .
+                ?award precis:hasName ?award_name .
+            }
+        }
+    `
+
+    // Converting to rdflibjs query object
+    var rdflib_query = $rdf.SPARQLToQuery(sparql_query, false, store);
+
+    // Running query
+    store.query(rdflib_query, resCallback, false, doneCallback);
+}
