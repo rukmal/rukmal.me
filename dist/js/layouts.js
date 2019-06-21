@@ -131,20 +131,17 @@ function layoutEducation(elem, elem_id) {
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exmpleModalLabel">More Information</h5>
+                    <h5 class="modal-title" id="exmpleModalLabel">${elem[relIRI('hasName')]['?obj'].value}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <b>${elem[relIRI('hasName')]['?obj'].value}</b>
-                    <br>
-                    <br>
-                    ${buildOptionalExtResElem(elem, 'degreeUniversity')}
+                    ${buildOptionalExtResElem(elem, 'degreeDepartment')}
                     <br>
                     ${buildOptionalExtResElem(elem, 'degreeSchool')}
                     <br>
-                    ${buildOptionalExtResElem(elem, 'degreeDepartment')}
+                    ${buildOptionalExtResElem(elem, 'degreeUniversity')}
                     <br>
                     <br>
                     <i>Location</i>: ${elem[relIRI('inCity')]['?obj'].value}, ${(elem[relIRI('inState')]) ? elem[relIRI('inState')]['?obj'].value : elem[relIRI('inCountry')]['?obj'].value}
@@ -261,15 +258,12 @@ function layoutWork(elem, elem_id) {
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exmpleModalLabel">More Information</h5>
+                <h5 class="modal-title" id="exmpleModalLabel">${elem[relIRI('hasName')]['?obj'].value}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <b>${elem[relIRI('hasName')]['?obj'].value}</b>
-                <br>
-                <br>
                 ${buildOptionalExtResElem(elem, 'employedAt')}
                 <br>
                 ${parent_html}
