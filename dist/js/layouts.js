@@ -42,17 +42,6 @@ function populateFromDBPedia(dbpedia_resource, field, container_id) {
 }
 
 
-function getLinkPreview(target) {
-    $.ajax({
-        url: "http://api.linkpreview.net",
-        dataType: 'jsonp',
-        data: {q: target, key: '5d0c55d0a5ac90fca245d13ae0fde217d65da2aeaebdc'},
-        success: function (data) {
-            console.log(data);
-        }
-    });
-}
-
 /**
  * Function to build HTML for an organization, given its type. That is, either
  * 'parentOrg' or 'superParentOrg'. This is a workaround to help separate
@@ -226,14 +215,17 @@ function layoutWork(elem, elem_id) {
     description_html += '</ul>';
 
     // Media URLs
-    var media_html = '<ul>';
+    var media_html = '';
 
-    for (var idx in elem['media_url']) {
-        media_html += '<li>' + elem['media_url'][idx] + '</li>';
-        getLinkPreview(elem['media_url'][idx]);
+    // Only appending list and title if not empty
+    if (elem['media_url'].length > 0) {
+        media_html = '<br><b><i>Other Media</i></b><ul>';
+        for (var idx in elem['media_url']) {
+            media_html += '<li><a href="' + elem['media_url'][idx] + '">' + elem['media_url'][idx] + '</a></li>';
+        }
+        media_html += '</ul>';
     }
 
-    media_html += '</ul>';
 
     var item = `
     <div class="precis_element container">

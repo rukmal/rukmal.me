@@ -37,6 +37,7 @@ function workDataHandler(store) {
                 var descriptions = [];
                 var parent_orgs = [];
                 var super_parent_orgs = [];
+                var media_url = [];
 
                 // Store for seen descriptions
                 var seen_descriptions = new Set();
@@ -46,6 +47,9 @@ function workDataHandler(store) {
 
                 // Store for seen super parent organizations
                 var seen_super_orgs = new Set();
+
+                // Store for seen media items
+                var seen_media = new Set();
 
                 // Iterating over all output to extract multiples fields
                 // This must be done like this because rdflib.js is trash,
@@ -86,8 +90,15 @@ function workDataHandler(store) {
                         }
                     }
 
-                    if (elem['?predicate'].value === relIRI('employedAt')) {
-                        // console.log(elem);
+                    // Isolating media URLs
+                    if (elem['?predicate'].value ===  relIRI('hasMedia')) {
+                        // Checking if it already in the set
+                        if (!seen_media.has(elem['?obj'].value)) {
+                            // Adding to set if not see
+                            seen_media.add(elem['?obj'].value);
+                            // Adding element to the media array
+                            media_url.push(elem['?obj'].value);
+                        }
                     }
                 }
 
@@ -101,9 +112,12 @@ function workDataHandler(store) {
                     a => a['?description_text'].value
                 );
 
-                // 
+                // Adding organizations
                 template_data['parent_orgs'] = parent_orgs;
                 template_data['super_parent_orgs'] = super_parent_orgs;
+
+                // Adding media
+                template_data['media_url'] = media_url;
 
                 // Remapping output array
                 var template_elem = elem_output.reduce(templateElemArrayRemap, {});
