@@ -42,6 +42,17 @@ function populateFromDBPedia(dbpedia_resource, field, container_id) {
 }
 
 
+function getLinkPreview(target) {
+    $.ajax({
+        url: "http://api.linkpreview.net",
+        dataType: 'jsonp',
+        data: {q: target, key: '5d0c55d0a5ac90fca245d13ae0fde217d65da2aeaebdc'},
+        success: function (data) {
+            console.log(data);
+        }
+    });
+}
+
 /**
  * Function to build HTML for an organization, given its type. That is, either
  * 'parentOrg' or 'superParentOrg'. This is a workaround to help separate
@@ -205,6 +216,25 @@ function layoutWork(elem, elem_id) {
         end_date = date_months[new Date(elem[relIRI('endDate')]['?obj'].value).getMonth()] + ' ' + new Date(elem[relIRI('endDate')]['?obj'].value).getFullYear()
     }
 
+    // Descriptions
+    var description_html = '<ul>';
+
+    for (var idx in elem['description']) {
+        description_html += '<li>' + elem['description'][idx] + '</li>';
+    }
+
+    description_html += '</ul>';
+
+    // Media URLs
+    var media_html = '<ul>';
+
+    for (var idx in elem['media_url']) {
+        media_html += '<li>' + elem['media_url'][idx] + '</li>';
+        getLinkPreview(elem['media_url'][idx]);
+    }
+
+    media_html += '</ul>';
+
     var item = `
     <div class="precis_element container">
     <div id=${elem_id} class="row">
@@ -236,7 +266,7 @@ function layoutWork(elem, elem_id) {
     </div>
 
     <div class="modal fade" id="${'modal' + rand_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exmpleModalLabel">More Information</h5>
@@ -258,6 +288,11 @@ function layoutWork(elem, elem_id) {
                 <i>Location</i>: ${elem[relIRI('inCity')]['?obj'].value}, ${(elem[relIRI('inState')]) ? elem[relIRI('inState')]['?obj'].value : elem[relIRI('inCountry')]['?obj'].value}
                 <br>
                 <i>Tenure</i>: ${date_months[new Date(elem[relIRI('hasDate')]['?obj'].value).getMonth()]} ${new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear()} - ${end_date}
+                <br>
+                <br>
+                <i><b>Description</b></i>
+                ${description_html}
+                ${media_html}
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
