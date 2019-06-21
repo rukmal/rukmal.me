@@ -271,6 +271,8 @@ function layoutWork(elem, elem_id) {
                 ${super_parent_html}
                 <br>
                 <br>
+                <i>Other Titles</i>: ${elem['other_titles'].sort().join(', ')}
+                <br>
                 <i>Location</i>: ${elem[relIRI('inCity')]['?obj'].value}, ${(elem[relIRI('inState')]) ? elem[relIRI('inState')]['?obj'].value : elem[relIRI('inCountry')]['?obj'].value}
                 <br>
                 <i>Tenure</i>: ${date_months[new Date(elem[relIRI('hasDate')]['?obj'].value).getMonth()]} ${new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear()} - ${end_date}
@@ -285,7 +287,7 @@ function layoutWork(elem, elem_id) {
             </div>
         </div>
     </div>
-</div>
+    </div>
     `
 
     return item;

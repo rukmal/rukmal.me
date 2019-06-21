@@ -38,6 +38,7 @@ function workDataHandler(store) {
                 var parent_orgs = [];
                 var super_parent_orgs = [];
                 var media_url = [];
+                var other_titles = [];
 
                 // Store for seen descriptions
                 var seen_descriptions = new Set();
@@ -50,6 +51,9 @@ function workDataHandler(store) {
 
                 // Store for seen media items
                 var seen_media = new Set();
+
+                // Store for seen other titles
+                var seen_titles = new Set();
 
                 // Iterating over all output to extract multiples fields
                 // This must be done like this because rdflib.js is trash,
@@ -100,6 +104,16 @@ function workDataHandler(store) {
                             media_url.push(elem['?obj'].value);
                         }
                     }
+
+                    if (elem['?predicate'].value === relIRI('otherTitles')) {
+                        // Checking if it already in the set
+                        if (!seen_titles.has(elem['?obj'].value)) {
+                            // Adding to set if not see
+                            seen_titles.add(elem['?obj'].value);
+                            // Adding element to the media array
+                            other_titles.push(elem['?obj'].value);
+                        }
+                    }
                 }
 
                 descriptions.sort(function(a, b) {
@@ -118,6 +132,9 @@ function workDataHandler(store) {
 
                 // Adding media
                 template_data['media_url'] = media_url;
+
+                // Adding other titles
+                template_data['other_titles'] = other_titles;
 
                 // Remapping output array
                 var template_elem = elem_output.reduce(templateElemArrayRemap, {});
