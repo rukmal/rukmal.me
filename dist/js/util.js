@@ -19,7 +19,7 @@ function getDBpediaData(dbpedia_resource, result_trigger) {
         }
     `
 
-    var base_url = 'http://dbpedia.org/sparql'
+    var base_url = 'https://dbpedia.org/sparql';
 
     var queryUrl = base_url + '?query=' + encodeURIComponent(sparqlQuery) + '&format=json';
 
