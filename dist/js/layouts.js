@@ -116,7 +116,7 @@ function layoutEducation(elem, elem_id) {
                 ${elem[relIRI('inCity')]['?obj'].value}, ${(elem[relIRI('inState')]) ? elem[relIRI('inState')]['?obj'].value : elem[relIRI('inCountry')]['?obj'].value} (${new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear()})
             </div>
             <br>
-            <button type="button" class="more_info_btn btn-secondary" data-toggle="modal" data-target="${'#modal' + rand_id}">
+            <button type="button" class="more_info_btn btn btn-secondary" data-toggle="modal" data-target="${'#modal' + rand_id}">
                 More Information
             </button>
         </div>
@@ -153,7 +153,7 @@ function layoutEducation(elem, elem_id) {
                     <i>Date</i>: ${new Date(elem[relIRI('hasDate')]['?obj'].value).toDateString()}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
                 </div>
             </div>
         </div>
@@ -244,7 +244,7 @@ function layoutWork(elem, elem_id) {
                 ${elem[relIRI('inCity')]['?obj'].value}, ${(elem[relIRI('inState')]) ? elem[relIRI('inState')]['?obj'].value : elem[relIRI('inCountry')]['?obj'].value}
             </div>
             <br>
-            <button type="button" class="more_info_btn btn-secondary" data-toggle="modal" data-target="${'#modal' + rand_id}">
+            <button type="button" class="more_info_btn btn btn-secondary" data-toggle="modal" data-target="${'#modal' + rand_id}">
                 More Information
             </button>
         </div>
@@ -283,7 +283,7 @@ function layoutWork(elem, elem_id) {
                 ${media_html}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
             </div>
         </div>
     </div>
@@ -366,7 +366,7 @@ function layoutProject(elem, elem_id) {
                 ${elem['description']}
             </div>
             <br>
-            <button type="button" class="more_info_btn btn-secondary" data-toggle="modal" data-target="${'#modal' + rand_id}">
+            <button type="button" class="more_info_btn btn btn-secondary" data-toggle="modal" data-target="${'#modal' + rand_id}">
                 More Information
             </button>
         </div>
@@ -400,7 +400,7 @@ function layoutProject(elem, elem_id) {
                 ${media_html}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
             </div>
         </div>
     </div>
