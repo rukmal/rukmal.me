@@ -55,6 +55,7 @@ span.descr_emph {
     float: right;
     border-radius: 0px $elem_container_radius $elem_container_radius 0px;
     clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+    -webkit-clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
 }
 
 .element_picture_container {
