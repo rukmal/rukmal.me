@@ -1,4 +1,5 @@
 $base_font: "IBM Plex Sans", sans-serif;
+$bootstrap_navbar_collapse_limit: 768px; // From bootstrap (default limit)
 $main_text_color: white;
 $precis_elem_bottom_margin: 70px;
 $elem_picture_height: 300px;
@@ -68,4 +69,10 @@ span.descr_emph {
 
 .more_info_btn {
     // margin-top: 7px;
+}
+
+@media (max-width: $bootstrap_navbar_collapse_limit) {
+    .element_picture {
+        display: none;
+    }
 }

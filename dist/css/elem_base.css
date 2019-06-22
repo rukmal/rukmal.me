@@ -49,4 +49,10 @@
   word-wrap: break-word;
 }
 
+@media (max-width: 768px) {
+  .element_picture {
+    display: none;
+  }
+}
+
 /*# sourceMappingURL=elem_base.css.map */
