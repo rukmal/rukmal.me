@@ -28,7 +28,13 @@ $elem_picture_height: 300px;
         // overflow: auto;
         padding-bottom: 40px;
     }
-    
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
     .element_content_container {
         margin-right: 15px;
         text-align: center;
