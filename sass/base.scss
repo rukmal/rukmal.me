@@ -78,4 +78,18 @@ a {
     #pagefooter {
         position: relative;
     }
+
+    #particles-js {
+        display: none;
+    }
+
+    .pageTitle {
+        background-color: rgba(0, 0, 0, 0);
+        font-size: 2.5em;
+        margin-bottom: 0px;
+    }
+
+    span {
+        display: inline-block;
+    }
 }

@@ -50,8 +50,18 @@
 }
 
 @media (max-width: 768px) {
-  .element_picture {
+  .element_picture, .pub_image, .talk_image, .project_image {
     display: none;
+  }
+
+  .precis_element {
+    display: block;
+    padding-bottom: 40px;
+  }
+
+  .element_content_container {
+    margin-right: 15px;
+    text-align: center;
   }
 }
 

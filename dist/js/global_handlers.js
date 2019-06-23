@@ -6,7 +6,7 @@ var abstract_len = 500;
  * have the necessary 'rel=popover' attribute, and accompanying 'data-dbpedia'
  * attribute pointing to a DBpedia resource that can be queried.
  */
-$('span[rel=popover]').hover(function () {
+function dbpediaPopupHandler() {
     var currentElem = this;
     // The callback function here populates the popup
     getDBpediaData($(this).data('dbpedia'), function (res) {
@@ -70,4 +70,9 @@ $('span[rel=popover]').hover(function () {
             }, 10);
         });
     });
-})
+};
+
+
+$('span[rel=popover]').hover(dbpediaPopupHandler);
+$('span[rel=popover]').on('tap', dbpediaPopupHandler);
+$('span[rel=popover]').on('taphold', dbpediaPopupHandler);
