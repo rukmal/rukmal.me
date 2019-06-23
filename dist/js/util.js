@@ -16,6 +16,7 @@ function getDBpediaData(dbpedia_resource, result_trigger) {
             OPTIONAL { <${dbpedia_resource}> dbo:thumbnail ?thumbnail } .
             OPTIONAL { <${dbpedia_resource}> foaf:isPrimaryTopicOf|foaf:primaryTopic ?wikipedia_res } .
             FILTER LANGMATCHES(LANG(?abstract), 'en') .
+            FILTER LANGMATCHES(LANG(?name), 'en') .
         }
     `
 
