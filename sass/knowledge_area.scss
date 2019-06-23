@@ -16,6 +16,10 @@ $elem_picture_height: 300px;
     filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.5));
 }
 
+.second_title {
+    margin-top: -3.5em;
+    margin-bottom: 3em;
+}
 
 @media (max-width: $bootstrap_navbar_collapse_limit) {
     // Precis element container
@@ -28,10 +32,5 @@ $elem_picture_height: 300px;
     .element_content_container {
         margin-right: 15px;
         text-align: center;
-    }
-
-    .second_title {
-        margin-top: -3em;
-        margin-bottom: 3em;
     }
 }
