@@ -4,6 +4,7 @@ $page_title_font: 'IBM Plex Sans', sans-serif;
 $sidebar_width: 232px; // From navbar-fixed-left.min.css
 $bootstrap_navbar_collapse_limit: 768px; // From bootstrap (default limit)
 $main_font_color: white;
+$title_top_padding: 150px;
 
 // NOTE: Background from https://uigradients.com/
 
@@ -32,13 +33,12 @@ a {
 }
 
 .pageTitle {
-    $top_padding: 150px;
     font-size: 4em;
     font-family: $page_title_font;
     font-weight: bold;
-    height: $top_padding;
+    height: $title_top_padding;
     color: white;
-    padding-top: ($top_padding / 2 - 25);
+    padding-top: ($title_top_padding / 2 - 25);
     margin-bottom: 60px;
     // background-color: rgba(0, 0, 0, 0.5);
 }
@@ -87,6 +87,7 @@ a {
         background-color: rgba(0, 0, 0, 0);
         font-size: 2.5em;
         margin-bottom: 0px;
+        padding-top: ($title_top_padding / 2 - 45);
     }
 
     span {
