@@ -397,9 +397,11 @@ function getAllTaughtAt(store, resCallback, doneCallback) {
     var sparql_query = `
         PREFIX precis: <http://precis.rukmal.me/ontology#>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        SELECT ?course ?taught_org ?taught_name ?taught_res
+        SELECT ?course ?taught_org ?taught_name ?taught_res ?course_code ?department_code
         WHERE {
             ?course rdf:type precis:Course .
+            ?course precis:hasCourseCode ?course_code .
+            ?course precis:hasDepartmentCode ?department_code .
             ?course precis:taughtAt ?taught_org .
             ?taught_org precis:hasName ?taught_name .
             ?taught_org precis:externalResource ?taught_res .

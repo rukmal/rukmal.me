@@ -19,7 +19,18 @@ function courseDataHandler(store) {
         course_output = course_output.sort(function(a, b) {
             var textA = a['?taught_name'].value.toUpperCase();
             var textB = b['?taught_name'].value.toUpperCase();
-            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+
+            if (textA < textB) {
+                return -1;
+            } else if (textA > textB) {
+                return 1;
+            } else {
+                // Equal (i.e. same taught at)
+                // Secondary sort by department + course code combo
+                var course_nameA = a['?department_code'].value.toUpperCase() + a['?course_code'].value.toUpperCase();
+                var course_nameB = b['?department_code'].value.toUpperCase() + b['?course_code'].value.toUpperCase();
+                return (course_nameA < course_nameB) ? -1 : (course_nameA > course_nameB) ? 1 : 0;
+            }
         });
 
         // See: https://stackoverflow.com/questions/14446511/most-efficient-method-to-groupby-on-an-array-of-objects
