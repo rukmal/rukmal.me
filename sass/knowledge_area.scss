@@ -1,0 +1,42 @@
+$bootstrap_navbar_collapse_limit: 768px; // From bootstrap (default limit)
+$elem_container_radius: 10px;
+$precis_element_box_opacity: 0.4;
+$precis_elem_bottom_margin: 70px;
+$elem_picture_height: 300px;
+
+
+.ka_element {
+    margin-bottom: $precis_elem_bottom_margin;
+    padding-bottom: $precis_elem_bottom_margin;
+    background-color: rgba(0, 0, 0, $precis_element_box_opacity);
+    border-radius: $elem_container_radius;
+    padding-right: 0px;
+    line-height: 1.75em;
+    padding-bottom: $elem_picture_height / 6.5;
+    filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.5));
+}
+
+.second_title {
+    margin-top: -3.5em;
+    margin-bottom: 3em;
+}
+
+@media (max-width: $bootstrap_navbar_collapse_limit) {
+    // Precis element container
+    .ka_element {
+        display: block;
+        // overflow: auto;
+        padding-bottom: 40px;
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .element_content_container {
+        margin-right: 15px;
+        text-align: center;
+    }
+}

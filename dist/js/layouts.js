@@ -521,12 +521,6 @@ function layoutPublication(elem, elem_id) {
     // Isolating image URL (if any)
     var image_url = (elem[relIRI('hasImage')] ? elem[relIRI('hasImage')]['?obj'].value : '');
 
-    // Building collaborators HTML
-    var collaborators_html = '';
-    if (elem[relIRI('hasCollaborators')]) {
-        collaborators_html += '<br><br><i>Collaborators</i>: ' + elem[relIRI('hasCollaborators')]['?obj'].value;
-    }
-
     // Media URLs
     var media_html = '';
     // Only appending list and title if not empty
@@ -609,6 +603,186 @@ function layoutPublication(elem, elem_id) {
     </div>
     </div>
     `
+
+    return item;
+}
+
+
+/**
+ * Function to build the layout for a 'KnowledgeArea' item.
+ * 
+ * @param {Object} elem Layout object.
+ * @param {String} elem_id ID of the element.
+ */
+function layoutKnowledgeArea(elem, elem_id) {
+    // Random number for element IDs
+    var rand_id = Math.ceil(Math.random() * 1000);
+
+    // Wikipedia base URL
+    var wiki_base_url = 'https://en.wikipedia.org/wiki/';
+
+    var subject_html = [];
+
+    for (idx in elem['subjects']) {
+        var subject = elem['subjects'][idx];
+
+        // Building wikipedia URL from external resource dbpedia (hacky, I know)
+        var wiki_url = wiki_base_url + subject['?sub_res'].value.split('/').pop();
+
+        subject_html.push(`<a class="entity_link" href="${wiki_url}"><span rel="popover" data-dbpedia="${subject['?sub_res'].value}">${subject['?sub_name'].value}</span></a>`);
+
+    }
+
+    var item = `
+    <div class="ka_element container">
+    <div id=${elem_id} class="row">
+        <div class="container element_content_container">
+            <div class="elem_name">
+                ${elem[relIRI('hasName')]['?obj'].value}
+            </div>
+            <br>
+            <div class="elem_third">
+                ${subject_html.join(';  ')}
+            </div>
+        </div>
+    </div>
+    </div>
+    `
+
+    return item;
+}
+
+
+/**
+ * Function to build the layout for a 'SkillGroup' item.
+ * 
+ * @param {Object} elem Layout object.
+ * @param {String} elem_id ID of the element.
+ */
+function layoutSkillGroup(elem, elem_id) {
+    // Random number for element IDs
+    var rand_id = Math.ceil(Math.random() * 1000);
+
+    // Wikipedia base URL
+    var wiki_base_url = 'https://en.wikipedia.org/wiki/';
+
+
+    var skill_html = [];
+
+    for (idx in elem['skills']) {
+        var subject = elem['skills'][idx];
+
+        // Building wikipedia URL from external resource dbpedia (hacky, I know)
+        var wiki_url = wiki_base_url + subject['?sk_res'].value.split('/').pop();
+
+        skill_html.push(`<a class="entity_link" href="${wiki_url}"><span rel="popover" data-dbpedia="${subject['?sk_res'].value}">${subject['?sk_name'].value}</span></a>`);
+
+    }
+
+    var item = `
+    <div class="ka_element container">
+    <div id=${elem_id} class="row">
+        <div class="container element_content_container">
+            <div class="elem_name">
+                ${elem[relIRI('hasName')]['?obj'].value}
+            </div>
+            <br>
+            <div class="elem_third">
+                ${skill_html.join(';  ')}
+            </div>
+        </div>
+    </div>
+    </div>
+    `
+
+    return item;
+}
+
+
+/**
+ * Function to build the layout for a 'Course' item.
+ * 
+ * @param {Object} elem Layout object.
+ * @param {String} elem_id ID of the element.
+ */
+function layoutCourse(elem, elem_id) {
+    // Random number for element IDs
+    var rand_id = Math.ceil(Math.random() * 1000);
+
+    var item = `
+        <li>
+            <a class="entity_link elem_third" href="#" data-toggle="modal" data-target="${'#modal' + rand_id}">${elem[relIRI('hasDepartmentCode')]['?obj'].value} ${elem[relIRI('hasCourseCode')]['?obj'].value}: ${elem[relIRI('hasName')]['?obj'].value}</a>
+        </li>
+    `
+
+    // Instructor HTML
+    var instructor_html = '';
+    if (elem[relIRI('withInstructor')]) {
+        instructor_html += '<i>Instructor</i>: ' + elem[relIRI('withInstructor')]['?obj'].value;
+    }
+
+    // Course Website
+    var course_website_html = '';
+    if (elem[relIRI('hasWebsite')]) {
+        course_website_html += `<br><i>Course Website</i>: <a href="${elem[relIRI('hasWebsite')]['?obj'].value}">${elem[relIRI('hasWebsite')]['?obj'].value}</a>`;
+    }
+
+    // Course Syllabus
+    var course_syllabus_html = '';
+    if (elem[relIRI('hasSyllabus')]) {
+        course_syllabus_html += `<br><i>Course Syllabus</i>: <a href="${elem[relIRI('hasSyllabus')]['?obj'].value}">${elem[relIRI('hasSyllabus')]['?obj'].value}</a>`;
+    }
+
+    // Start date intelligent construction (blank if does not exist)
+    var start_date = '';
+    if (elem[relIRI('hasDate')]) {
+        start_date = '<i>Start Date</i>: ' + date_months[new Date(elem[relIRI('hasDate')]['?obj'].value).getMonth()] + ' ' + new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear();
+    }
+
+
+
+    // End date intelligent construction (blank if does not exist)
+    var end_date = '';
+    if (elem[relIRI('endDate')]) {
+        end_date = '<br><i>End Date</i>: ' + date_months[new Date(elem[relIRI('endDate')]['?obj'].value).getMonth()] + ' ' + new Date(elem[relIRI('endDate')]['?obj'].value).getFullYear();
+    }
+
+    var modal_html = `
+    <div class="modal fade" id="${'modal' + rand_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel${rand_id}" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exmpleModalLabel${rand_id}">${elem[relIRI('hasDepartmentCode')]['?obj'].value} ${elem[relIRI('hasCourseCode')]['?obj'].value}: ${elem[relIRI('hasName')]['?obj'].value}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <i>Department Code</i>: ${elem[relIRI('hasDepartmentCode')]['?obj'].value}
+                <br>
+                <i>Course Code</i>: ${elem[relIRI('hasCourseCode')]['?obj'].value}
+                <br>
+                <i>Course Title</i>: ${elem[relIRI('hasName')]['?obj'].value}
+                <br>
+                <br>
+                ${instructor_html}
+                ${course_website_html}
+                ${course_syllabus_html}
+                <br>
+                <br>
+                ${start_date}
+                ${end_date}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    `
+
+    // Must be added outside the current div
+    $('.course_modals').append(modal_html);
 
     return item;
 }

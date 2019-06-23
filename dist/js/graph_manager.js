@@ -100,10 +100,11 @@ function getOfType(store, type_name, resCallback, doneCallback) {
     var sparql_query = `
     PREFIX precis: <http://precis.rukmal.me/ontology#>
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    SELECT ?name ?date
+    SELECT ?name ?date ?text_name
     WHERE {
         ?name rdf:type precis:${type_name} .
-        ?name precis:hasDate ?date .
+        OPTIONAL { ?name precis:hasDate ?date . }
+        OPTIONAL { ?name precis:hasName ?text_name . }
     }
     `;
 
@@ -316,6 +317,125 @@ function getAllPublications(store, individual_iri, resCallback, doneCallback) {
                 ?desc precis:hasPriority ?priority .
                 ?desc precis:hasText ?description_text .
             }
+        }
+    `
+
+    // Converting to rdflibjs query object
+    var rdflib_query = $rdf.SPARQLToQuery(sparql_query, false, store);
+
+    // Running query
+    store.query(rdflib_query, resCallback, false, doneCallback);
+}
+
+
+/**
+ * Function to get all properties of a given KnowledgeArea.
+ * 
+ * @param {Object} store RDFLib.js store.
+ * @param {String} individual_iri Target IRI.
+ * @param {Callback} resCallback Callback function called with each result.
+ * @param {Callback} doneCallback Callback function called when query is complete.
+ */
+function getAllKnowledgeAreas(store, individual_iri, resCallback, doneCallback) {
+    var sparql_query = `
+        PREFIX precis: <http://precis.rukmal.me/ontology#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        SELECT ?predicate ?obj ?sub_name ?sub_res
+        WHERE {
+            <${individual_iri}> ?predicate ?obj .
+            <${individual_iri}> precis:hasSubject ?sub .
+            ?sub precis:hasName ?sub_name .
+            ?sub precis:externalResource ?sub_res .
+        }
+    `
+
+    // Converting to rdflibjs query object
+    var rdflib_query = $rdf.SPARQLToQuery(sparql_query, false, store);
+
+    // Running query
+    store.query(rdflib_query, resCallback, false, doneCallback);
+}
+
+
+/**
+ * Function to get all properties of a given SkillGroup.
+ * 
+ * @param {Object} store RDFLib.js store.
+ * @param {String} individual_iri Target IRI.
+ * @param {Callback} resCallback Callback function called with each result.
+ * @param {Callback} doneCallback Callback function called when query is complete.
+ */
+function getAllSkillGroup(store, individual_iri, resCallback, doneCallback) {
+    var sparql_query = `
+        PREFIX precis: <http://precis.rukmal.me/ontology#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        SELECT ?predicate ?obj ?sk_name ?sk_res
+        WHERE {
+            <${individual_iri}> ?predicate ?obj .
+            <${individual_iri}> precis:hasSkill ?sk .
+            ?sk precis:hasName ?sk_name .
+            ?sk precis:externalResource ?sk_res .
+        }
+    `
+
+    // Converting to rdflibjs query object
+    var rdflib_query = $rdf.SPARQLToQuery(sparql_query, false, store);
+
+    // Running query
+    store.query(rdflib_query, resCallback, false, doneCallback);
+}
+
+
+/**
+ * Function to get all institutions where courses are taught.
+ * 
+ * @param {Object} store RDFLib.js store.
+ * @param {Callback} resCallback Callback function called with each result.
+ * @param {Callback} doneCallback Callback function called when query is complete.
+ */
+function getAllTaughtAt(store, resCallback, doneCallback) {
+    var sparql_query = `
+        PREFIX precis: <http://precis.rukmal.me/ontology#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        SELECT ?course ?taught_org ?taught_name ?taught_res ?course_code ?department_code
+        WHERE {
+            ?course rdf:type precis:Course .
+            ?course precis:hasCourseCode ?course_code .
+            ?course precis:hasDepartmentCode ?department_code .
+            ?course precis:taughtAt ?taught_org .
+            ?taught_org precis:hasName ?taught_name .
+            ?taught_org precis:externalResource ?taught_res .
+            ?taught_org precis:hasWebsite ?taught_web .
+        }
+    `
+
+    // Converting to rdflibjs query object
+    var rdflib_query = $rdf.SPARQLToQuery(sparql_query, false, store);
+
+    // Running query
+    store.query(rdflib_query, resCallback, false, doneCallback);
+}
+
+
+/**
+ * Function to get all properties of a given Course.
+ * 
+ * @param {Object} store RDFLib.js store.
+ * @param {String} individual_iri Target IRI.
+ * @param {Callback} resCallback Callback function called with each result.
+ * @param {Callback} doneCallback Callback function called when query is complete.
+ */
+function getAllCourse(store, individual_iri, resCallback, doneCallback) {
+    var sparql_query = `
+        PREFIX precis: <http://precis.rukmal.me/ontology#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        SELECT ?predicate ?obj ?taught_name ?taught_res ?taught_website
+        WHERE {
+            <${individual_iri}> ?predicate ?obj .
+            <${individual_iri}> precis:taughtAt ?taught_org .
+            ?taught_org precis:hasName ?taught_name .
+            ?taught_org precis:externalResource ?taught_res .
+            ?taught_org precis:hasWebsite ?taught_website .
         }
     `
 
