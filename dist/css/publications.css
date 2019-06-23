@@ -1,0 +1,22 @@
+.pub_image {
+  height: 300px;
+  max-width: 350px;
+  width: 325px;
+  overflow: hidden;
+  float: right;
+  border-radius: 0px 10px 10px 0px;
+}
+
+.pub_status {
+  font-weight: normal;
+}
+
+.authors {
+  font-size: 1.1em;
+}
+
+.pub_info {
+  font-size: 0.9em;
+}
+
+/*# sourceMappingURL=publications.css.map */
