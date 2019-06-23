@@ -61,6 +61,15 @@ a {
     z-index: -1;
 }
 
+.helper_icon {
+    position: absolute;
+    top: -2px;
+    right: 0;
+    font-size: 150%;
+    padding-right: 7.5px;
+    z-index: 10;
+}
+
 @media (min-width: $bootstrap_navbar_collapse_limit) {
     .vertical-center {
         min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
@@ -92,5 +101,11 @@ a {
 
     span {
         display: inline-block;
+    }
+
+    .helper_icon {
+        position: relative;
+        font-size: 150%;
+        padding-right: 7.5px;
     }
 }

@@ -41,6 +41,15 @@ a {
   z-index: -1;
 }
 
+.helper_icon {
+  position: absolute;
+  top: -2px;
+  right: 0;
+  font-size: 150%;
+  padding-right: 7.5px;
+  z-index: 10;
+}
+
 @media (min-width: 768px) {
   .vertical-center {
     min-height: 100%;
@@ -73,6 +82,12 @@ a {
 
   span {
     display: inline-block;
+  }
+
+  .helper_icon {
+    position: relative;
+    font-size: 150%;
+    padding-right: 7.5px;
   }
 }
 
