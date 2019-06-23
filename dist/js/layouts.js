@@ -315,7 +315,7 @@ function layoutProject(elem, elem_id) {
     var skills_html = '';
     if (elem['skills'].length > 0) {
         var individual_skill = [];
-        skills_html += '<br><i>Skills</i>: '
+        skills_html += '<br><i>Technologies:</i>: '
         for (idx in elem['skills']) {
             individual_skill.push(`<span class="descr_emph" rel="popover" data-dbpedia="${elem['skills'][idx]['?sk_resource'].value}">${elem['skills'][idx]['?sk_name'].value}</span>`);
         }
@@ -444,7 +444,6 @@ function layoutTalk(elem, elem_id) {
         media_html += '</ul>';
     }
 
-
     var item = `
     <div class="precis_element container">
     <div id=${elem_id} class="row">
@@ -482,7 +481,7 @@ function layoutTalk(elem, elem_id) {
                 ${elem['description']}
                 <br>
                 <br>
-                <i>Project Website</i>: <a href="${proj_website}">${proj_website}</a>
+                <i>Talk Website</i>: <a href="${proj_website}">${proj_website}</a>
                 <br>
                 <br>
                 <i>Topic Area</i>: <span class="descr_emph topic_area" rel="popover" data-dbpedia="${elem[relIRI('externalResource')]['?obj'].value}" id="${'topic_area' + rand_id}"></span>
@@ -501,6 +500,115 @@ function layoutTalk(elem, elem_id) {
 
     // Populating dbpedia fields
     populateFromDBPedia(elem[relIRI('externalResource')]['?obj'].value, 'name', '#topic_area' + rand_id); // Main page degree concentration
+
+    return item;
+}
+
+
+/**
+ * Function to build the layout for a 'Publication' item.
+ * 
+ * @param {Object} elem Layout object.
+ * @param {String} elem_id ID of the element.
+ */
+function layoutPublication(elem, elem_id) {
+    // Random number for element IDs
+    var rand_id = Math.ceil(Math.random() * 1000);
+
+    // Creating name HTML
+    var proj_website = (elem[relIRI('hasWebsite')] ? elem[relIRI('hasWebsite')]['?obj'].value : '');
+
+    // Isolating image URL (if any)
+    var image_url = (elem[relIRI('hasImage')] ? elem[relIRI('hasImage')]['?obj'].value : '');
+
+    // Building collaborators HTML
+    var collaborators_html = '';
+    if (elem[relIRI('hasCollaborators')]) {
+        collaborators_html += '<br><br><i>Collaborators</i>: ' + elem[relIRI('hasCollaborators')]['?obj'].value;
+    }
+
+    // Media URLs
+    var media_html = '';
+    // Only appending list and title if not empty
+    if (elem['media_url'].length > 0) {
+        media_html = '<br><b><i>Other Media</i></b><ul>';
+        for (var idx in elem['media_url']) {
+            media_html += '<li><a href="' + elem['media_url'][idx] + '">' + elem['media_url'][idx] + '</a></li>';
+        }
+        media_html += '</ul>';
+    }
+
+    // Publication info HTML
+    var pub_info_html = '';
+    if (elem[relIRI('inPublication')]['?obj'].value !== '') {
+        pub_info_html += elem[relIRI('inPublication')]['?obj'].value + '; ';
+    }
+    pub_info_html += elem[relIRI('inConferenceOrJournal')]['?obj'].value;
+
+    var status_html = (elem[relIRI('hasStatus')] ? '<i><span class="pub_status">(' + elem[relIRI('hasStatus')]['?obj'].value + ')</span></i> ' : '');
+
+    // Descriptions
+    var description_html = '<ul>';
+    for (var idx in elem['description']) {
+        description_html += '<li>' + elem['description'][idx] + '</li>';
+    }
+    description_html += '</ul>';
+    var image_url = (elem[relIRI('hasImage')] ? elem[relIRI('hasImage')]['?obj'].value : '');;
+    
+    var item = `
+    <div class="precis_element container">
+    <div id=${elem_id} class="row">
+        <div class="col-sm-8 element_content_container">
+            <div class="elem_fourth">
+                ${date_months[new Date(elem[relIRI('hasDate')]['?obj'].value).getMonth()]} ${new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear()}
+            </div>
+            <div class="elem_name">
+                <a class="entity_link" href="${proj_website}">${status_html + elem[relIRI('hasName')]['?obj'].value}</a>
+            </div>
+            <div class="authors">
+                ${elem[relIRI('hasAuthors')]['?obj'].value}
+            </div>
+            <div class="pub_info">
+                ${pub_info_html}
+            </div>
+            <br>
+            <button type="button" class="more_info_btn btn btn-secondary" data-toggle="modal" data-target="${'#modal' + rand_id}">
+                More Information
+            </button>
+        </div>
+        <div class="col-sm-4 element_picture_container">
+        <img class="pub_image" src="${image_url}">
+        </div>
+    </div>
+    </div>
+
+    <div class="modal fade" id="${'modal' + rand_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exmpleModalLabel">${elem[relIRI('hasName')]['?obj'].value}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <i>Authors</i>: ${elem[relIRI('hasAuthors')]['?obj'].value}
+                <br>
+                <br>
+                <i>Publication Website</i>: <a href="${proj_website}">${proj_website}</a>
+                <br>
+                <br>
+                <i><b>Description</b></i>
+                ${description_html}
+                ${media_html}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    `
 
     return item;
 }
