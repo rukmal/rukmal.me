@@ -697,3 +697,92 @@ function layoutSkillGroup(elem, elem_id) {
 
     return item;
 }
+
+
+/**
+ * Function to build the layout for a 'Course' item.
+ * 
+ * @param {Object} elem Layout object.
+ * @param {String} elem_id ID of the element.
+ */
+function layoutCourse(elem, elem_id) {
+    // Random number for element IDs
+    var rand_id = Math.ceil(Math.random() * 1000);
+
+    var item = `
+        <li>
+            <a class="entity_link elem_third" href="#" data-toggle="modal" data-target="${'#modal' + rand_id}">${elem[relIRI('hasDepartmentCode')]['?obj'].value} ${elem[relIRI('hasCourseCode')]['?obj'].value}: ${elem[relIRI('hasName')]['?obj'].value}</a>
+        </li>
+    `
+
+    // Instructor HTML
+    var instructor_html = '';
+    if (elem[relIRI('withInstructor')]) {
+        instructor_html += '<i>Instructor</i>: ' + elem[relIRI('withInstructor')]['?obj'].value;
+    }
+
+    // Course Website
+    var course_website_html = '';
+    if (elem[relIRI('hasWebsite')]) {
+        course_website_html += `<br><i>Course Website</i>: <a href="${elem[relIRI('hasWebsite')]['?obj'].value}">${elem[relIRI('hasWebsite')]['?obj'].value}</a>`;
+    }
+
+    // Course Syllabus
+    var course_syllabus_html = '';
+    if (elem[relIRI('hasSyllabus')]) {
+        course_syllabus_html += `<br><i>Course Syllabus</i>: <a href="${elem[relIRI('hasSyllabus')]['?obj'].value}">${elem[relIRI('hasSyllabus')]['?obj'].value}</a>`;
+    }
+
+    // Start date intelligent construction (blank if does not exist)
+    var start_date = '';
+    if (elem[relIRI('hasDate')]) {
+        start_date = '<i>Start Date</i>: ' + date_months[new Date(elem[relIRI('hasDate')]['?obj'].value).getMonth()] + ' ' + new Date(elem[relIRI('hasDate')]['?obj'].value).getFullYear();
+    }
+
+
+
+    // End date intelligent construction (blank if does not exist)
+    var end_date = '';
+    if (elem[relIRI('endDate')]) {
+        end_date = '<br><i>End Date</i>: ' + date_months[new Date(elem[relIRI('endDate')]['?obj'].value).getMonth()] + ' ' + new Date(elem[relIRI('endDate')]['?obj'].value).getFullYear();
+    }
+
+    var modal_html = `
+    <div class="modal fade" id="${'modal' + rand_id}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel${rand_id}" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exmpleModalLabel${rand_id}">${elem[relIRI('hasDepartmentCode')]['?obj'].value} ${elem[relIRI('hasCourseCode')]['?obj'].value}: ${elem[relIRI('hasName')]['?obj'].value}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <i>Department Code</i>: ${elem[relIRI('hasDepartmentCode')]['?obj'].value}
+                <br>
+                <i>Course Code</i>: ${elem[relIRI('hasCourseCode')]['?obj'].value}
+                <br>
+                <i>Course Title</i>: ${elem[relIRI('hasName')]['?obj'].value}
+                <br>
+                <br>
+                ${instructor_html}
+                ${course_website_html}
+                ${course_syllabus_html}
+                <br>
+                <br>
+                ${start_date}
+                ${end_date}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Close</button>
+            </div>
+        </div>
+    </div>
+    </div>
+    `
+
+    // Must be added outside the current div
+    $('.course_modals').append(modal_html);
+
+    return item;
+}
