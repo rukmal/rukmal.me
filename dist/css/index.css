@@ -26,4 +26,32 @@
   padding-bottom: 10px;
 }
 
+@media (max-width: 768px) {
+  #main_landing_img {
+    height: 200px;
+    width: 200px;
+    margin-bottom: 20px;
+  }
+
+  #full_name {
+    color: white;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 2.5em;
+    text-align: center !important;
+  }
+
+  .name_container {
+    text-align: center !important;
+  }
+
+  .text_content_container {
+    text-align: center !important;
+    padding-right: 0px;
+  }
+
+  #main_content_box {
+    padding-right: 0px;
+  }
+}
+
 /*# sourceMappingURL=index.css.map */

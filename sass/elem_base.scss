@@ -72,7 +72,20 @@ span.descr_emph {
 }
 
 @media (max-width: $bootstrap_navbar_collapse_limit) {
-    .element_picture {
+    // Disabling images on small screens
+    .element_picture, .pub_image, .talk_image, .project_image {
         display: none;
+    }
+
+    // Precis element container
+    .precis_element {
+        display: block;
+        // overflow: auto;
+        padding-bottom: 40px;
+    }
+    
+    .element_content_container {
+        margin-right: 15px;
+        text-align: center;
     }
 }

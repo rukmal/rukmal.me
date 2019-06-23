@@ -463,7 +463,7 @@ function layoutTalk(elem, elem_id) {
             </button>
         </div>
         <div class="col-sm-4 element_picture_container">
-        <img class="talk_image" src="${image_url}">
+            <img class="talk_image" src="${image_url}">
         </div>
     </div>
     </div>
@@ -577,7 +577,7 @@ function layoutPublication(elem, elem_id) {
             </button>
         </div>
         <div class="col-sm-4 element_picture_container">
-        <img class="pub_image" src="${image_url}">
+            <img class="pub_image" src="${image_url}">
         </div>
     </div>
     </div>

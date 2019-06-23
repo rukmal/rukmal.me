@@ -1,8 +1,10 @@
+$bootstrap_navbar_collapse_limit: 768px; // From bootstrap (default limit)
 $full_name_font: "IBM Plex Sans", sans-serif;
 $full_name_color: rgb(255, 255, 255);
 $main_content_border_box_pad: 10px;
 $main_content_box_opacity: 0;
 $main_img_dim: 300px;
+$precis_element_box_opacity: 0.4;
 
 #main_landing_img {
     height: $main_img_dim;
@@ -31,4 +33,35 @@ $main_img_dim: 300px;
     background-color: rgba(0, 0, 0, $main_content_box_opacity);
     padding-top: $main_content_border_box_pad;
     padding-bottom: $main_content_border_box_pad;
+}
+
+
+@media (max-width: $bootstrap_navbar_collapse_limit) {
+    // Disabling images on small screens
+    #main_landing_img {
+        height: 200px;
+        width: 200px;
+        margin-bottom: 20px;
+    }
+
+    #full_name {
+        color: $full_name_color;
+        font-family: $full_name_font;
+        // font-weight: bold;
+        font-size: 2.5em;
+        text-align: center !important;
+    }
+
+    .name_container {
+        text-align: center !important;
+    }
+
+    .text_content_container {
+        text-align: center !important;
+        padding-right: 0px;
+    }
+
+    #main_content_box {
+        padding-right: 0px;
+    }
 }
