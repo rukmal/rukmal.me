@@ -355,3 +355,32 @@ function getAllKnowledgeAreas(store, individual_iri, resCallback, doneCallback) 
     // Running query
     store.query(rdflib_query, resCallback, false, doneCallback);
 }
+
+
+/**
+ * Function to get all properties of a given SkillGroup.
+ * 
+ * @param {Object} store RDFLib.js store.
+ * @param {String} individual_iri Target IRI.
+ * @param {Callback} resCallback Callback function called with each result.
+ * @param {Callback} doneCallback Callback function called when query is complete.
+ */
+function getAllSkillGroup(store, individual_iri, resCallback, doneCallback) {
+    var sparql_query = `
+        PREFIX precis: <http://precis.rukmal.me/ontology#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        SELECT ?predicate ?obj ?sk_name ?sk_res
+        WHERE {
+            <${individual_iri}> ?predicate ?obj .
+            <${individual_iri}> precis:hasSkill ?sk .
+            ?sk precis:hasName ?sk_name .
+            ?sk precis:externalResource ?sk_res .
+        }
+    `
+
+    // Converting to rdflibjs query object
+    var rdflib_query = $rdf.SPARQLToQuery(sparql_query, false, store);
+
+    // Running query
+    store.query(rdflib_query, resCallback, false, doneCallback);
+}
