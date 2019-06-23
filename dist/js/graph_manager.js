@@ -103,7 +103,7 @@ function getOfType(store, type_name, resCallback, doneCallback) {
     SELECT ?name ?date
     WHERE {
         ?name rdf:type precis:${type_name} .
-        ?name precis:hasDate ?date .
+        OPTIONAL { ?name precis:hasDate ?date . }
     }
     `;
 
