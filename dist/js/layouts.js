@@ -521,12 +521,6 @@ function layoutPublication(elem, elem_id) {
     // Isolating image URL (if any)
     var image_url = (elem[relIRI('hasImage')] ? elem[relIRI('hasImage')]['?obj'].value : '');
 
-    // Building collaborators HTML
-    var collaborators_html = '';
-    if (elem[relIRI('hasCollaborators')]) {
-        collaborators_html += '<br><br><i>Collaborators</i>: ' + elem[relIRI('hasCollaborators')]['?obj'].value;
-    }
-
     // Media URLs
     var media_html = '';
     // Only appending list and title if not empty
