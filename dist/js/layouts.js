@@ -606,3 +606,42 @@ function layoutPublication(elem, elem_id) {
 
     return item;
 }
+
+
+/**
+ * Function to build the layout for a 'KnowledgeArea' item.
+ * 
+ * @param {Object} elem Layout object.
+ * @param {String} elem_id ID of the element.
+ */
+function layoutKnowledgeArea(elem, elem_id) {
+    // Random number for element IDs
+    var rand_id = Math.ceil(Math.random() * 1000);
+
+    var subject_html = [];
+
+    for (idx in elem['subjects']) {
+        var subject = elem['subjects'][idx];
+
+        subject_html.push(`<a class="entity_link" href="${subject['?sub_res'].value}"><span rel="popover" data-dbpedia="${subject['?sub_res'].value}">${subject['?sub_name'].value}</span></a>`);
+
+    }
+
+    var item = `
+    <div class="ka_element container">
+    <div id=${elem_id} class="row">
+        <div class="container element_content_container">
+            <div class="elem_name">
+                ${elem[relIRI('hasName')]['?obj'].value}
+            </div>
+            <br>
+            <div class="elem_third">
+                ${subject_html.join(';  ')}
+            </div>
+        </div>
+    </div>
+    </div>
+    `
+
+    return item;
+}

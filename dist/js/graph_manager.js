@@ -100,10 +100,11 @@ function getOfType(store, type_name, resCallback, doneCallback) {
     var sparql_query = `
     PREFIX precis: <http://precis.rukmal.me/ontology#>
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-    SELECT ?name ?date
+    SELECT ?name ?date ?text_name
     WHERE {
         ?name rdf:type precis:${type_name} .
         OPTIONAL { ?name precis:hasDate ?date . }
+        OPTIONAL { ?name precis:hasName ?text_name . }
     }
     `;
 
@@ -316,6 +317,35 @@ function getAllPublications(store, individual_iri, resCallback, doneCallback) {
                 ?desc precis:hasPriority ?priority .
                 ?desc precis:hasText ?description_text .
             }
+        }
+    `
+
+    // Converting to rdflibjs query object
+    var rdflib_query = $rdf.SPARQLToQuery(sparql_query, false, store);
+
+    // Running query
+    store.query(rdflib_query, resCallback, false, doneCallback);
+}
+
+
+/**
+ * Function to get all properties of a given KnowledgeArea.
+ * 
+ * @param {Object} store RDFLib.js store.
+ * @param {String} individual_iri Target IRI.
+ * @param {Callback} resCallback Callback function called with each result.
+ * @param {Callback} doneCallback Callback function called when query is complete.
+ */
+function getAllKnowledgeAreas(store, individual_iri, resCallback, doneCallback) {
+    var sparql_query = `
+        PREFIX precis: <http://precis.rukmal.me/ontology#>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+        SELECT ?predicate ?obj ?sub_name ?sub_res
+        WHERE {
+            <${individual_iri}> ?predicate ?obj .
+            <${individual_iri}> precis:hasSubject ?sub .
+            ?sub precis:hasName ?sub_name .
+            ?sub precis:externalResource ?sub_res .
         }
     `
 
