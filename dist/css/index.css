@@ -36,7 +36,7 @@
   #full_name {
     color: white;
     font-family: "IBM Plex Sans", sans-serif;
-    font-size: 2.5em;
+    font-size: 2em;
     text-align: center !important;
   }
 
@@ -51,6 +51,7 @@
 
   #main_content_box {
     padding-right: 0px;
+    padding-left: 15px;
   }
 }
 
