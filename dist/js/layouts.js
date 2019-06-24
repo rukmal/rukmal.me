@@ -249,7 +249,7 @@ function layoutWork(elem, elem_id) {
             </button>
         </div>
         <div class="col-sm-4 element_picture_container">
-            <img class="element_picture" src="${elem[relIRI('hasImage')]['?obj'].value}">
+            <img class="work_image" src="${elem[relIRI('hasImage')]['?obj'].value}">
         </div>
     </div>
     </div>
