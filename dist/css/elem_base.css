@@ -50,7 +50,7 @@
 }
 
 @media (max-width: 768px) {
-  .element_picture, .pub_image, .talk_image, .project_image {
+  .element_picture, .pub_image, .talk_image, .project_image, .work_image {
     display: none;
   }
 
