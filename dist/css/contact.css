@@ -1,0 +1,38 @@
+.precis_element {
+  color: white;
+}
+
+.contact_icon {
+  height: 150px;
+  width: 150px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+@media (min-width: 768px) {
+  .entities {
+    min-height: 100vh;
+  }
+
+  .precis_element {
+    padding-top: 25px;
+    padding-bottom: 25px;
+  }
+}
+@media (max-width: 768px) {
+  .precis_element {
+    padding-top: 20px;
+  }
+
+  .contact_icon {
+    display: none;
+  }
+
+  .contact_icon_container {
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+}
+
+/*# sourceMappingURL=contact.css.map */
