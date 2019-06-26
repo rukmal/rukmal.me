@@ -315,7 +315,7 @@ function layoutProject(elem, elem_id) {
     var skills_html = '';
     if (elem['skills'].length > 0) {
         var individual_skill = [];
-        skills_html += '<br><i>Technologies:</i>: '
+        skills_html += '<br><i>Technologies</i>: '
         for (idx in elem['skills']) {
             individual_skill.push(`<span class="descr_emph" rel="popover" data-dbpedia="${elem['skills'][idx]['?sk_resource'].value}">${elem['skills'][idx]['?sk_name'].value}</span>`);
         }
