@@ -70,6 +70,11 @@ a {
     z-index: 10;
 }
 
+.license {
+    background-color: rgba(0, 0, 0, 0.2);
+    overflow: auto;
+}
+
 @media (min-width: $bootstrap_navbar_collapse_limit) {
     .vertical-center {
         min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
