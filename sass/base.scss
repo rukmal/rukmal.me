@@ -86,6 +86,10 @@ a {
     #pagefooter {
         padding-left: $sidebar_width;
     }
+
+    .license {
+        padding-left: 20px;
+    }
 }
 
 @media (max-width: $bootstrap_navbar_collapse_limit) {

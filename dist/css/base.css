@@ -68,6 +68,10 @@ a {
   #pagefooter {
     padding-left: 232px;
   }
+
+  .license {
+    padding-left: 20px;
+  }
 }
 @media (max-width: 768px) {
   #pagefooter {
