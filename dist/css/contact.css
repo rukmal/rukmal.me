@@ -2,6 +2,10 @@
   color: white;
 }
 
+a.entity_link {
+  color: white;
+}
+
 .contact_icon {
   height: 150px;
   width: 150px;
