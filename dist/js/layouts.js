@@ -223,6 +223,14 @@ function layoutWork(elem, elem_id) {
         media_html += '</ul>';
     }
 
+    // Other titles
+    var other_titles_html = '';
+
+    // Only append if  other titles actually exist
+    if (elem['other_titles'].length > 0) {
+        other_titles_html += '<br><i>Other Titles</i>: ' + elem['other_titles'].sort().join(', ');
+    }
+
 
     var item = `
     <div class="precis_element container">
@@ -270,8 +278,7 @@ function layoutWork(elem, elem_id) {
                 <br>
                 ${super_parent_html}
                 <br>
-                <br>
-                <i>Other Titles</i>: ${elem['other_titles'].sort().join(', ')}
+                ${other_titles_html}
                 <br>
                 <i>Location</i>: ${elem[relIRI('inCity')]['?obj'].value}, ${(elem[relIRI('inState')]) ? elem[relIRI('inState')]['?obj'].value : elem[relIRI('inCountry')]['?obj'].value}
                 <br>
