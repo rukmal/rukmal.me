@@ -32,6 +32,10 @@ a {
     cursor: pointer;
 }
 
+a.dropdown-item {
+    color: rgba(255,255,255,.5);
+}
+
 .pageTitle {
     font-size: 4em;
     font-family: $page_title_font;
