@@ -35,6 +35,9 @@ $precis_element_box_opacity: 0.4;
     padding-bottom: $main_content_border_box_pad;
 }
 
+a:hover {
+    color: white;
+}
 
 @media (max-width: $bootstrap_navbar_collapse_limit) {
     // Disabling images on small screens
