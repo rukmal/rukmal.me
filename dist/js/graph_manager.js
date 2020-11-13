@@ -31,8 +31,8 @@ function loadGraphData(graphHandler) {
             // Download graph data
             downloadGraphData(buildGraph, graphHandler)
         } else {
-            if ((Number(sessionStorage.rukmal_data_graph_last_updated) - 
-                new Date().getTime()) > max_graph_age) {
+            var graph_age = new Date().getTime() - Number(sessionStorage.rukmal_data_graph_last_updated);
+            if (graph_age > max_graph_age) {
                 // Graph data exists, but it is too old
                 downloadGraphData(buildGraph, graphHandler);
             } else {
